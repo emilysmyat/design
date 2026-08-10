@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Multidisciplinary Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ============ TOKENS ============ */
+:root{
+  --paper:#F1EFE8;
+  --paper-2:#E9E6DC;
+  --ink:#17181C;
+  --ink-soft:#4B4C50;
+  --ink-faint:#84837D;
+  --red:#C81D25;
+  --red-deep:#8F1319;
+  --blue:#24475A;
+  --blue-deep:#162E3B;
+  --line:#D2CDC0;
+  --line-strong:#B8B2A2;
+  --card-bg:#FBFAF6;
+  --focus:#1D5AA6;
+  --radius-sm:2px;
+  --radius-md:4px;
+  --maxw:1180px;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:0.001ms !important;animation-iteration-count:1 !important;transition-duration:0.001ms !important;scroll-behavior:auto !important;}
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:'Source Serif 4', Georgia, serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+
+img,svg{display:block;max-width:100%;}
+a{color:inherit;}
+button{font-family:inherit;}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px;}
+
+.eyebrow{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+}
+.eyebrow em{font-style:normal;color:var(--red);}
+
+h1,h2,h3{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:800;
+  line-height:1.04;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+
+/* ============ TOPBAR ============ */
+.topbar{
+  position:sticky;top:0;z-index:60;
+  background:rgba(241,239,232,.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-inner{
+  max-width:var(--maxw);margin:0 auto;padding:16px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brandmark{
+  font-family:'IBM Plex Mono', monospace;
+  font-weight:600;
+  font-size:14px;
+  letter-spacing:.03em;
+  text-decoration:none;
+  display:flex;align-items:center;gap:8px;
+}
+.brandmark .dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block;flex:none;}
+.topnav{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-family:'IBM Plex Mono', monospace;font-size:13px;}
+.topnav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent;transition:color .15s var(--ease), border-color .15s var(--ease);}
+.topnav a:hover{color:var(--ink);border-color:var(--red);}
+.navtoggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;}
+.navtoggle span{display:block;width:18px;height:2px;background:var(--ink);margin:4px 0;}
+
+/* ============ HERO ============ */
+.hero{
+  padding:104px 0 88px;
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid var(--line);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size:64px 64px;
+  opacity:.35;
+  mask-image:radial-gradient(ellipse 90% 70% at 60% 30%, black 10%, transparent 75%);
+  pointer-events:none;
+}
+.hero-inner{position:relative;}
+.hero .eyebrow{margin-bottom:22px;}
+.hero h1{
+  font-size:clamp(40px, 7vw, 84px);
+  max-width:15ch;
+}
+.hero h1 .role-slot{
+  color:var(--red);
+  display:inline-block;
+  min-width:1ch;
+}
+.hero-sub{
+  margin:28px 0 0;
+  max-width:52ch;
+  font-size:19px;
+  color:var(--ink-soft);
+}
+.hero-stats{
+  display:flex;
+  gap:0;
+  margin-top:56px;
+  border-top:1px solid var(--line-strong);
+  max-width:640px;
+}
+.hero-stat{
+  flex:1;
+  padding:16px 20px 0 0;
+  border-right:1px solid var(--line);
+}
+.hero-stat:last-child{border-right:none;}
+.hero-stat .num{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:700;
+  font-size:30px;
+  display:block;
+}
+.hero-stat .lbl{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11px;
+  color:var(--ink-faint);
+  text-transform:uppercase;
+  letter-spacing:.06em;
+}
+
+/* ============ SECTION LABELS ============ */
+.section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:24px;
+  margin-bottom:36px;
+  flex-wrap:wrap;
+}
+.section-head h2{font-size:clamp(28px,3.6vw,40px);}
+.section-tag{font-family:'IBM Plex Mono', monospace;font-size:13px;color:var(--ink-faint);}
+
+section{padding:88px 0;}
+section.tight{padding-top:0;}
+
+/* ============ FILTER BAR ============ */
+.index-section{border-bottom:1px solid var(--line);}
+.filterbar{
+  position:sticky;
+  top:57px;
+  z-index:50;
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+  margin-bottom:48px;
+}
+.filterbar-inner{
+  max-width:var(--maxw);margin:0 auto;padding:18px 32px;
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.filter-count{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--ink-faint);
+  margin-left:auto;
+  white-space:nowrap;
+}
+.chip{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;
+  letter-spacing:.02em;
+  background:transparent;
+  border:1px solid var(--line-strong);
+  color:var(--ink-soft);
+  padding:8px 14px;
+  border-radius:100px;
+  cursor:pointer;
+  transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
+  white-space:nowrap;
+}
+.chip:hover{border-color:var(--ink);color:var(--ink);}
+.chip.active{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.chip.active .chip-swatch{background:var(--red);}
+
+/* ============ PROJECT GRID ============ */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.card{
+  background:var(--card-bg);
+  padding:32px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity .35s var(--ease), transform .35s var(--ease);
+}
+.card.is-hidden{
+  display:none;
+}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;}
+.card-index{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-faint);}
+.card-art{
+  width:100%;
+  aspect-ratio:16/9;
+  border-radius:var(--radius-sm);
+  position:relative;
+  overflow:hidden;
+  border:1px solid var(--line);
+}
+.card-art svg{width:100%;height:100%;}
+.card h3{
+  font-size:23px;
+  margin-top:4px;
+}
+.card-role{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12.5px;
+  color:var(--ink-faint);
+  margin-top:-10px;
+}
+.card p.desc{
+  color:var(--ink-soft);
+  font-size:15.5px;
+  margin:0;
+}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px;}
+.tag{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:11px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+  padding:5px 10px;
+  border-radius:100px;
+  border:1px solid var(--line-strong);
+  color:var(--ink-soft);
+  background:var(--paper);
+}
+.tag.t-branding{border-color:#C99A2B;color:#7A5C15;}
+.tag.t-marketing{border-color:var(--blue);color:var(--blue-deep);}
+.tag.t-uxui{border-color:var(--blue);color:var(--blue-deep);}
+.tag.t-editorial{border-color:var(--red);color:var(--red-deep);}
+.tag.t-social{border-color:var(--red);color:var(--red-deep);}
+.tag.t-illustration{border-color:#5B7A4F;color:#3C5233;}
+.tag.t-motion{border-color:#5B7A4F;color:#3C5233;}
+
+/* ============ ABOUT ============ */
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:72px;
+  align-items:start;
+}
+.about-bio p{font-size:18px;color:var(--ink-soft);max-width:58ch;}
+.about-bio p + p{margin-top:18px;}
+.skill-block + .skill-block{margin-top:32px;}
+.skill-block h4{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 12px;
+}
+.skill-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line);}
+.skill-list li{
+  padding:11px 0;
+  border-bottom:1px solid var(--line);
+  display:flex;justify-content:space-between;
+  font-size:15px;
+}
+.skill-list li span:last-child{color:var(--ink-faint);font-family:'IBM Plex Mono', monospace;font-size:12px;}
+
+/* ============ CONTACT ============ */
+.contact{
+  background:var(--ink);
+  color:var(--paper);
+  border-top:1px solid var(--line);
+}
+.contact .eyebrow{color:var(--paper-2);}
+.contact .eyebrow em{color:var(--red);}
+.contact h2{
+  color:var(--paper);
+  font-size:clamp(32px,5vw,58px);
+  max-width:16ch;
+}
+.contact-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:32px;
+  flex-wrap:wrap;
+  margin-top:40px;
+}
+.contact-links{display:flex;flex-direction:column;gap:2px;}
+.contact-links a{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:700;
+  font-size:22px;
+  text-decoration:none;
+  color:var(--paper);
+  border-bottom:1px solid rgba(241,239,232,.25);
+  padding:10px 0;
+  transition:color .15s var(--ease), border-color .15s var(--ease);
+  display:flex;align-items:center;gap:10px;
+}
+.contact-links a:hover{color:var(--red);border-color:var(--red);}
+.contact-links a .arrow{font-family:'IBM Plex Mono', monospace;font-size:15px;}
+.resume-btn{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  letter-spacing:.03em;
+  background:var(--paper);
+  color:var(--ink);
+  border:1px solid var(--paper);
+  padding:14px 22px;
+  border-radius:100px;
+  text-decoration:none;
+  white-space:nowrap;
+  transition:background .15s var(--ease), color .15s var(--ease);
+}
+.resume-btn:hover{background:transparent;color:var(--paper);}
+
+.foot{
+  border-top:1px solid rgba(241,239,232,.18);
+  margin-top:72px;
+  padding-top:24px;
+  display:flex;
+  justify-content:space-between;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  color:var(--paper-2);
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+/* ============ REVEAL ANIM ============ */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s var(--ease), transform .6s var(--ease);}
+.reveal.in{opacity:1;transform:translateY(0);}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 860px){
+  .wrap, .topbar-inner, .filterbar-inner{padding-left:20px;padding-right:20px;}
+  section{padding:64px 0;}
+  .topnav{
+    position:fixed;top:57px;left:0;right:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    flex-direction:column;gap:0;
+    padding:8px 20px 18px;
+    transform:translateY(-8px);
+    opacity:0;pointer-events:none;
+    transition:opacity .18s var(--ease), transform .18s var(--ease);
+  }
+  .topnav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .topnav a{display:block;padding:12px 0;border-bottom:1px solid var(--line);}
+  .navtoggle{display:block;}
+  .hero{padding:64px 0 56px;}
+  .hero-stats{flex-wrap:wrap;}
+  .hero-stat{flex:1 1 45%;margin-bottom:16px;}
+  .project-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:48px;}
+  .contact-row{flex-direction:column;align-items:flex-start;}
+  .filterbar{top:56px;}
+  .filter-count{width:100%;margin-left:0;order:-1;margin-bottom:4px;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="#top" class="brandmark"><span class="dot"></span>INDEX / PORTFOLIO</a>
+    <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <nav>
+      <ul class="topnav" id="topnav">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Designer <em>&amp;</em> Visual Strategist — New York, NY</p>
+      <h1>Design across <span class="role-slot" id="roleSlot">brand</span> and back again.</h1>
+      <p class="hero-sub">I'm a multidisciplinary designer working across brand identity, product UX, editorial illustration, and campaign marketing — trained to move fluidly between commercial polish and issue-driven storytelling.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num">8</span><span class="lbl">Projects indexed</span></div>
+        <div class="hero-stat"><span class="num">6</span><span class="lbl">Disciplines</span></div>
+        <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
+        <div class="hero-stat"><span class="num">01</span><span class="lbl">Open to work</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORK / INDEX ============ -->
+  <section class="index-section tight" id="work">
+    <div class="wrap" style="padding-top:64px;">
+      <div class="section-head reveal">
+        <h2>Selected work</h2>
+        <span class="section-tag">Filter by discipline —&gt;</span>
+      </div>
+    </div>
+
+    <div class="filterbar">
+      <div class="filterbar-inner">
+        <button class="chip active" data-filter="all">All work</button>
+        <button class="chip" data-filter="branding">Branding</button>
+        <button class="chip" data-filter="marketing">Marketing</button>
+        <button class="chip" data-filter="uxui">UX / UI</button>
+        <button class="chip" data-filter="editorial">Editorial</button>
+        <button class="chip" data-filter="social">Social impact</button>
+        <button class="chip" data-filter="illustration">Illustration &amp; motion</button>
+        <span class="filter-count" id="filterCount">8 of 8 shown</span>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="project-grid" id="projectGrid">
+
+        <!-- 1 -->
+        <article class="card reveal" data-tags="branding marketing">
+          <div class="card-top">
+            <span class="card-index">01 / Most recent</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract brand mark composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <circle cx="300" cy="70" r="120" fill="#C99A2B" opacity="0.18"/>
+              <path d="M0 225 L140 90 L230 170 L400 40 L400 225 Z" fill="#24475A" opacity="0.85"/>
+              <circle cx="90" cy="60" r="26" fill="#C81D25"/>
+              <line x1="0" y1="140" x2="400" y2="140" stroke="#17181C" stroke-width="1" opacity="0.2"/>
+            </svg>
+          </div>
+          <h3>Canopy by Hilton — Brand &amp; Marketing Design</h3>
+          <p class="card-role">Freelance Designer · Marketing &amp; Brand Design</p>
+          <p class="desc">Developed marketing collateral and on-brand visual assets for Canopy by Hilton, translating a hospitality brand's voice into consistent, guest-facing design across campaigns.</p>
+          <div class="tag-row">
+            <span class="tag t-branding">Branding</span>
+            <span class="tag t-marketing">Marketing</span>
+          </div>
+        </article>
+
+        <!-- 2 -->
+        <article class="card reveal" data-tags="marketing editorial">
+          <div class="card-top">
+            <span class="card-index">02</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract newsletter layout composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="30" y="30" width="150" height="10" fill="#17181C" opacity="0.7"/>
+              <rect x="30" y="52" width="220" height="6" fill="#84837D"/>
+              <rect x="30" y="66" width="180" height="6" fill="#84837D"/>
+              <rect x="230" y="30" width="140" height="90" fill="#24475A" opacity="0.75"/>
+              <rect x="30" y="130" width="90" height="65" fill="#C81D25" opacity="0.85"/>
+              <rect x="130" y="130" width="90" height="65" fill="#C99A2B" opacity="0.55"/>
+            </svg>
+          </div>
+          <h3>Advanced Fresh Concepts — E-Newsletters &amp; Press Kit</h3>
+          <p class="card-role">Designer · Email &amp; Editorial Design</p>
+          <p class="desc">Designed recurring e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing editorial readability with brand-consistent visual structure.</p>
+          <div class="tag-row">
+            <span class="tag t-marketing">Marketing</span>
+            <span class="tag t-editorial">Editorial</span>
+          </div>
+        </article>
+
+        <!-- 3 -->
+        <article class="card reveal" data-tags="editorial social uxui">
+          <div class="card-top">
+            <span class="card-index">03</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract interactive website composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="0" y="0" width="400" height="30" fill="#17181C" opacity="0.85"/>
+              <rect x="20" y="55" width="120" height="150" fill="#C81D25" opacity="0.9"/>
+              <rect x="150" y="55" width="230" height="70" fill="#24475A" opacity="0.7"/>
+              <rect x="150" y="135" width="110" height="70" fill="#84837D" opacity="0.4"/>
+              <rect x="270" y="135" width="110" height="70" fill="#C99A2B" opacity="0.4"/>
+            </svg>
+          </div>
+          <h3>Myanmar: A Nation in Crisis — Senior Thesis</h3>
+          <p class="card-role">Independent Study · Interactive Web Design &amp; Research</p>
+          <p class="desc">An independently researched senior thesis presented as an interactive website examining Myanmar's political and humanitarian crisis — pairing critical analysis with an information-forward interface designed for accessibility and reflection.</p>
+          <div class="tag-row">
+            <span class="tag t-editorial">Editorial</span>
+            <span class="tag t-social">Social impact</span>
+            <span class="tag t-uxui">UX / UI</span>
+          </div>
+        </article>
+
+        <!-- 4 -->
+        <article class="card reveal" data-tags="uxui">
+          <div class="card-top">
+            <span class="card-index">04</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract product interface composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="40" y="30" width="150" height="165" rx="10" fill="#17181C" opacity="0.9"/>
+              <rect x="55" y="50" width="120" height="70" rx="4" fill="#24475A"/>
+              <circle cx="115" cy="150" r="18" fill="#C81D25"/>
+              <rect x="55" y="175" width="120" height="6" fill="#84837D"/>
+              <circle cx="290" cy="70" r="50" fill="#C99A2B" opacity="0.3"/>
+              <circle cx="310" cy="150" r="30" fill="#24475A" opacity="0.35"/>
+            </svg>
+          </div>
+          <h3>Ubiq — UX/UI &amp; Product Lab Internship</h3>
+          <p class="card-role">Design &amp; Product Lab Intern · 3D Social Platform</p>
+          <p class="desc">Contributed to UX/UI design and product research for Ubiq, an immersive 3D social platform, working across interface design and cross-functional product lab initiatives.</p>
+          <div class="tag-row">
+            <span class="tag t-uxui">UX / UI</span>
+          </div>
+        </article>
+
+        <!-- 5 -->
+        <article class="card reveal" data-tags="illustration social">
+          <div class="card-top">
+            <span class="card-index">05</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract protest poster composition">
+              <rect width="400" height="225" fill="#17181C"/>
+              <circle cx="130" cy="112" r="85" fill="#C81D25"/>
+              <rect x="200" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.9"/>
+              <rect x="240" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.6"/>
+              <rect x="280" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.3"/>
+            </svg>
+          </div>
+          <h3>Political Posters — Asian American Voices Journal</h3>
+          <p class="card-role">Illustrator · CUNY Publication</p>
+          <p class="desc">Created political poster illustrations published in CUNY's Asian American Voices journal, using bold graphic language to give visual form to political commentary.</p>
+          <div class="tag-row">
+            <span class="tag t-illustration">Illustration</span>
+            <span class="tag t-social">Social impact</span>
+          </div>
+        </article>
+
+        <!-- 6 -->
+        <article class="card reveal" data-tags="illustration social">
+          <div class="card-top">
+            <span class="card-index">06</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract digital poster composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <polygon points="200,20 380,205 20,205" fill="#24475A" opacity="0.85"/>
+              <circle cx="200" cy="140" r="40" fill="#C81D25"/>
+              <rect x="0" y="0" width="400" height="20" fill="#C99A2B" opacity="0.6"/>
+            </svg>
+          </div>
+          <h3>Digital Posters — NYC Fellows Collective</h3>
+          <p class="card-role">Illustrator · Published Collective Work</p>
+          <p class="desc">Designed digital posters created for and published by the NYC Fellows Collective, contributing original illustrative work to a community-driven creative platform.</p>
+          <div class="tag-row">
+            <span class="tag t-illustration">Illustration</span>
+            <span class="tag t-social">Social impact</span>
+          </div>
+        </article>
+
+        <!-- 7 -->
+        <article class="card reveal" data-tags="illustration">
+          <div class="card-top">
+            <span class="card-index">07</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract illustration and motion frame composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="30" y="30" width="90" height="60" fill="#C81D25" opacity="0.8"/>
+              <rect x="135" y="30" width="90" height="60" fill="#24475A" opacity="0.6"/>
+              <rect x="240" y="30" width="90" height="60" fill="#C99A2B" opacity="0.6"/>
+              <rect x="30" y="105" width="90" height="60" fill="#24475A" opacity="0.4"/>
+              <rect x="135" y="105" width="90" height="60" fill="#C81D25" opacity="0.5"/>
+              <rect x="240" y="105" width="90" height="60" fill="#17181C" opacity="0.3"/>
+              <text x="30" y="200" font-family="IBM Plex Mono, monospace" font-size="11" fill="#84837D">FRAME 01 — 06</text>
+            </svg>
+          </div>
+          <h3>Illustration, Animation &amp; Video Editing</h3>
+          <p class="card-role">Coursework · Illustration &amp; Motion Design</p>
+          <p class="desc">A body of general illustrative and motion work developed across college coursework, spanning hand-drawn and digital illustration, frame-by-frame animation, and video editing.</p>
+          <div class="tag-row">
+            <span class="tag t-illustration">Illustration</span>
+            <span class="tag t-motion">Motion</span>
+          </div>
+        </article>
+
+        <!-- 8 -->
+        <article class="card reveal" data-tags="marketing branding">
+          <div class="card-top">
+            <span class="card-index">08 / Earliest</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract social media grid composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="30" y="30" width="80" height="80" fill="#C81D25" opacity="0.75"/>
+              <rect x="120" y="30" width="80" height="80" fill="#C99A2B" opacity="0.55"/>
+              <rect x="210" y="30" width="80" height="80" fill="#24475A" opacity="0.65"/>
+              <rect x="30" y="120" width="80" height="80" fill="#24475A" opacity="0.35"/>
+              <rect x="120" y="120" width="80" height="80" fill="#C81D25" opacity="0.35"/>
+              <rect x="210" y="120" width="80" height="80" fill="#C99A2B" opacity="0.35"/>
+            </svg>
+          </div>
+          <h3>Email &amp; Social Media Marketing — NYC Beauty Co.</h3>
+          <p class="card-role">Marketing Designer · Beauty &amp; Lifestyle</p>
+          <p class="desc">Produced email campaigns and social media content for an NYC-based beauty company, designing visual assets aligned with brand tone across owned marketing channels.</p>
+          <div class="tag-row">
+            <span class="tag t-marketing">Marketing</span>
+            <span class="tag t-branding">Branding</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2>About</h2>
+        <span class="section-tag">Range, by design</span>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-bio">
+          <p>I move between disciplines on purpose. Brand campaigns taught me how a single visual system has to hold up across a dozen touchpoints; UX work taught me how to design for a person's actual behavior, not just their attention; editorial and civic-facing projects taught me that design can carry an argument, not just a message.</p>
+          <p>That range is the point, not a scatter of side projects. Whether the brief is a hospitality brand's newsletter or a thesis on a humanitarian crisis, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there.</p>
+        </div>
+        <div>
+          <div class="skill-block">
+            <h4>Design &amp; Brand</h4>
+            <ul class="skill-list">
+              <li><span>Visual identity &amp; brand systems</span><span>Branding</span></li>
+              <li><span>Marketing collateral &amp; campaigns</span><span>Marketing</span></li>
+              <li><span>Editorial &amp; publication layout</span><span>Editorial</span></li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h4>Product &amp; Interaction</h4>
+            <ul class="skill-list">
+              <li><span>UX / UI design</span><span>Product</span></li>
+              <li><span>Interactive web design</span><span>Web</span></li>
+              <li><span>Product research &amp; lab work</span><span>Research</span></li>
+            </ul>
+          </div>
+          <div class="skill-block">
+            <h4>Illustration &amp; Motion</h4>
+            <ul class="skill-list">
+              <li><span>Editorial &amp; political illustration</span><span>Illustration</span></li>
+              <li><span>Animation &amp; video editing</span><span>Motion</span></li>
+              <li><span>Digital poster design</span><span>Print / digital</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <p class="eyebrow reveal">Currently <em>open</em> to opportunities</p>
+      <h2 class="reveal">Let's work on something together.</h2>
+      <div class="contact-row reveal">
+        <div class="contact-links">
+          <a href="mailto:hello@yourname.com"><span class="arrow">→</span> hello@yourname.com</a>
+          <a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener"><span class="arrow">→</span> LinkedIn</a>
+          <a href="https://yourname.com" target="_blank" rel="noopener"><span class="arrow">→</span> Instagram / Behance</a>
+        </div>
+        <a href="#" class="resume-btn">Download resume ↓</a>
+      </div>
+      <div class="foot">
+        <span>© <span id="year"></span> — Portfolio Index</span>
+        <span>Designed &amp; built as a living document</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var navToggle = document.getElementById('navToggle');
+  var topnav = document.getElementById('topnav');
+  navToggle.addEventListener('click', function(){
+    var open = topnav.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  topnav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      topnav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  var roles = ['brand', 'product', 'editorial', 'marketing', 'illustration', 'civic work'];
+  var roleSlot = document.getElementById('roleSlot');
+  var idx = 0;
+  if (!reduceMotion) {
+    setInterval(function(){
+      idx = (idx + 1) % roles.length;
+      roleSlot.style.opacity = '0';
+      setTimeout(function(){
+        roleSlot.textContent = roles[idx];
+        roleSlot.style.opacity = '1';
+      }, 220);
+    }, 2400);
+  }
+  roleSlot.style.transition = 'opacity .22s ease';
+
+  var chips = document.querySelectorAll('.chip');
+  var cards = document.querySelectorAll('.card');
+  var countEl = document.getElementById('filterCount');
+  var total = cards.length;
+
+  function applyFilter(filter){
+    var shown = 0;
+    cards.forEach(function(card){
+      var tags = card.getAttribute('data-tags').split(' ');
+      var match = filter === 'all' || tags.indexOf(filter) !== -1;
+      card.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    countEl.textContent = shown + ' of ' + total + ' shown';
+  }
+
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      chips.forEach(function(c){ c.classList.remove('active'); });
+      chip.classList.add('active');
+      applyFilter(chip.getAttribute('data-filter'));
+    });
+  });
+
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
