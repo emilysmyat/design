@@ -118,8 +118,8 @@ h1,h2,h3{
 .hero-inner{position:relative;}
 .hero .eyebrow{margin-bottom:22px;}
 .hero h1{
-  font-size:clamp(40px, 7vw, 84px);
-  max-width:15ch;
+  font-size:clamp(30px, 7vw, 74px);
+  max-width:30ch;
 }
 .hero h1 .role-slot{
   color:var(--red);
@@ -143,6 +143,7 @@ h1,h2,h3{
   flex:1;
   padding:16px 20px 0 0;
   border-right:1px solid var(--line);
+  text-align:center;
 }
 .hero-stat:last-child{border-right:none;}
 .hero-stat .num{
@@ -405,7 +406,7 @@ section.tight{padding-top:0;}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="#top" class="brandmark"><span class="dot"></span>INDEX / PORTFOLIO</a>
+    <a href="#top" class="brandmark"><span class="dot"></span>PORTFOLIO</a>
     <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -426,11 +427,10 @@ section.tight{padding-top:0;}
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="wrap hero-inner">
       <p class="eyebrow">Designer <em>&amp;</em> Visual Strategist — New York, NY</p>
-      <h1>Design across <span class="role-slot" id="roleSlot">brand</span> and back again.</h1>
-      <p class="hero-sub">I'm a multidisciplinary designer working across brand identity, product UX, editorial illustration, and campaign marketing — trained to move fluidly between commercial polish and issue-driven storytelling.</p>
+      <h1>I design across <span class="role-slot" id="roleSlot">editorial</span>,<br>and back again.</h1>
+      <p class="hero-sub">I am a multidisciplinary designer trained to move fluidly between commercial polish and mission-driven&nbsp;storytelling.</p>
       <div class="hero-stats">
-        <div class="hero-stat"><span class="num">8</span><span class="lbl">Projects indexed</span></div>
-        <div class="hero-stat"><span class="num">6</span><span class="lbl">Disciplines</span></div>
+        <div class="hero-stat"><span class="num">10</span><span class="lbl">Projects indexed</span></div>
         <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
         <div class="hero-stat"><span class="num">01</span><span class="lbl">Open to work</span></div>
       </div>
@@ -742,7 +742,7 @@ section.tight{padding-top:0;}
     });
   });
 
-  var roles = ['brand', 'product', 'editorial', 'marketing', 'illustration', 'civic work'];
+  var roles = ['editorial', 'marketing', 'civic work', 'branding', 'product', 'illustration'];
   var roleSlot = document.getElementById('roleSlot');
   var idx = 0;
   if (!reduceMotion) {
