@@ -82,7 +82,8 @@ h1,h2,h3{
   border-bottom:1px solid var(--line);
 }
 .topbar-inner{
-  max-width:var(--maxw);margin:0 auto;padding:16px 32px;
+  max-width:var(--maxw);margin:0 auto;padding:0 32px;
+  height:64px;
   display:flex;align-items:center;justify-content:space-between;
 }
 .brandmark{
@@ -102,7 +103,7 @@ h1,h2,h3{
 
 /* ============ HERO ============ */
 .hero{
-  padding:104px 0 88px;
+  padding:56px 0;
   position:relative;
   overflow:hidden;
   border-bottom:1px solid var(--line);
@@ -120,8 +121,8 @@ h1,h2,h3{
 .hero-inner{position:relative;}
 .hero .eyebrow{margin-bottom:22px;}
 .hero h1{
-  font-size:clamp(30px, 7vw, 74px);
-  max-width:30ch;
+  font-size:clamp(24px, 5.7vw, 60px);
+  max-width:32ch;
 }
 .hero h1 .role-slot{
   color:var(--red);
@@ -181,7 +182,7 @@ section.tight{padding-top:0;}
 .index-section{border-bottom:1px solid var(--line);}
 .filterbar{
   position:sticky;
-  top:57px;
+  top:63px;
   z-index:50;
   background:var(--paper);
   border-bottom:1px solid var(--line);
@@ -240,9 +241,7 @@ section.tight{padding-top:0;}
 .project-grid{
   display:grid;
   grid-template-columns:repeat(2, 1fr);
-  gap:1px;
-  background:var(--line);
-  border:1px solid var(--line);
+  gap:28px;
 }
 .card{
   background:var(--card-bg);
@@ -252,6 +251,8 @@ section.tight{padding-top:0;}
   gap:18px;
   opacity:1;
   transform:translateY(0);
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
   transition:opacity .35s var(--ease), transform .35s var(--ease);
 }
 .card.is-hidden{
@@ -269,7 +270,7 @@ section.tight{padding-top:0;}
 }
 .card-art svg{width:100%;height:100%;}
 .card h3{
-  font-size:23px;
+  font-size:17px;
   margin-top:4px;
 }
 .card-role{
@@ -283,25 +284,19 @@ section.tight{padding-top:0;}
   font-size:15.5px;
   margin:0;
 }
-.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px;}
+.tag-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto;padding-top:6px;}
 .tag{
   font-family:'IBM Plex Mono', monospace;
-  font-size:11px;
-  letter-spacing:.03em;
+  font-size:10.5px;
+  letter-spacing:.04em;
   text-transform:uppercase;
-  padding:5px 10px;
-  border-radius:100px;
-  border:1px solid var(--line-strong);
-  color:var(--ink-soft);
-  background:var(--paper);
+  color:var(--ink-faint);
 }
-.tag.t-branding{border-color:#C99A2B;color:#7A5C15;}
-.tag.t-marketing{border-color:var(--blue);color:var(--blue-deep);}
-.tag.t-uxui{border-color:var(--blue);color:var(--blue-deep);}
-.tag.t-editorial{border-color:var(--red);color:var(--red-deep);}
-.tag.t-social{border-color:var(--red);color:var(--red-deep);}
-.tag.t-illustration{border-color:#5B7A4F;color:#3C5233;}
-.tag.t-motion{border-color:#5B7A4F;color:#3C5233;}
+.tag-row .dot-sep{
+  width:3px;height:3px;border-radius:50%;
+  background:var(--line-strong);
+  flex:none;
+}
 
 /* ============ ABOUT ============ */
 .about-grid{
@@ -402,7 +397,7 @@ section.tight{padding-top:0;}
   .wrap, .topbar-inner, .filterbar-inner{padding-left:20px;padding-right:20px;}
   section{padding:64px 0;}
   .topnav{
-    position:fixed;top:57px;left:0;right:0;
+    position:fixed;top:65px;left:0;right:0;
     background:var(--paper);
     border-bottom:1px solid var(--line);
     flex-direction:column;gap:0;
@@ -414,13 +409,12 @@ section.tight{padding-top:0;}
   .topnav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
   .topnav a{display:block;padding:12px 0;border-bottom:1px solid var(--line);}
   .navtoggle{display:block;}
-  .hero{padding:64px 0 56px;}
+  .hero{padding:36px 0;}
   .hero-stats{flex-wrap:wrap;}
   .hero-stat{flex:1 1 45%;margin-bottom:16px;}
   .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .contact-row{flex-direction:column;align-items:flex-start;}
-  .filterbar{top:56px;}
   .filter-count{width:100%;margin-left:0;order:-1;margin-bottom:4px;}
 }
 </style>
@@ -449,9 +443,9 @@ section.tight{padding-top:0;}
   <section class="hero">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="wrap hero-inner">
-      <p class="eyebrow">Designer <em>&amp;</em> Visual Strategist — New York, NY</p>
-      <h1>I design across <span class="role-slot" id="roleSlot">editorial</span><br>and back again.</h1>
-      <p class="hero-sub">I am a multidisciplinary designer trained to move fluidly<br>between commercial polish and mission-driven&nbsp;storytelling.</p>
+      <p class="eyebrow">Creative Design <em>&amp;</em> Communications — New York, NY</p>
+      <h1>I work across <span class="role-slot" id="roleSlot">marketing</span><br>and back again.</h1>
+      <p class="hero-sub">I am an emerging multidisciplinary professional moving fluidly<br>between commercial polish and mission-driven&nbsp;storytelling.</p>
       <div class="hero-stats">
         <div class="hero-stat"><span class="num">10</span><span class="lbl">Projects indexed</span></div>
         <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
@@ -474,14 +468,15 @@ section.tight{padding-top:0;}
           <button class="mode-btn active" data-mode="discipline" role="tab" aria-selected="true">By discipline</button>
           <button class="mode-btn" data-mode="industry" role="tab" aria-selected="false">By industry</button>
         </div>
-        <span class="filter-count" id="filterCount">8 of 8 shown</span>
+        <span class="filter-count" id="filterCount">10 of 10 shown</span>
       </div>
       <div class="filterbar-inner chip-row" id="disciplineChips">
         <button class="chip active" data-filter="all">All work</button>
-        <button class="chip" data-filter="branding,marketing">Branding, Marketing, Communications</button>
+        <button class="chip" data-filter="branding">Branding &amp; Marketing</button>
+        <button class="chip" data-filter="content">Content, Copy, Comms</button>
         <button class="chip" data-filter="uxui">Product &amp; Interaction</button>
         <button class="chip" data-filter="social">Social Impact</button>
-        <button class="chip" data-filter="motion">Other</button>
+        <button class="chip" data-filter="motion">Artistic</button>
       </div>
       <div class="filterbar-inner chip-row" id="industryChips" hidden>
         <button class="chip active" data-filter="all">All work</button>
@@ -489,7 +484,7 @@ section.tight{padding-top:0;}
         <button class="chip" data-filter="tech">Technology</button>
         <button class="chip" data-filter="beauty">Beauty &amp; Fashion</button>
         <button class="chip" data-filter="nonprofit">Nonprofit</button>
-        <button class="chip" data-filter="other">Other</button>
+        <button class="chip" data-filter="other">Artistic</button>
       </div>
     </div>
 
@@ -497,9 +492,10 @@ section.tight{padding-top:0;}
       <div class="project-grid" id="projectGrid">
 
         <!-- 1 -->
-        <article class="card reveal" data-tags="branding marketing" data-industry="hospitality">
+        <article class="card reveal" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Branding & Marketing" data-employment="Full-Time">
           <div class="card-top">
-            <span class="card-index">01 / Most recent</span>
+            <span class="card-index">01</span>
+            <span class="card-index">May 2026 — Present</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract brand mark composition">
@@ -510,19 +506,17 @@ section.tight{padding-top:0;}
               <line x1="0" y1="140" x2="400" y2="140" stroke="#17181C" stroke-width="1" opacity="0.2"/>
             </svg>
           </div>
-          <h3>Canopy by Hilton — Brand &amp; Marketing Design</h3>
-          <p class="card-role">Freelance Designer · Marketing &amp; Brand Design</p>
+          <h3>Canopy by Hilton — Marketing Collateral</h3>
+          <p class="card-role">Marketing &amp; Sales Administrator · Marketing &amp; Brand Design</p>
           <p class="desc">Developed marketing collateral and on-brand visual assets for Canopy by Hilton, translating a hospitality brand's voice into consistent, guest-facing design across campaigns.</p>
-          <div class="tag-row">
-            <span class="tag t-branding">Branding</span>
-            <span class="tag t-marketing">Marketing</span>
-          </div>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 2 -->
-        <article class="card reveal" data-tags="marketing editorial" data-industry="hospitality">
+        <article class="card reveal" data-tags="content marketing" data-industry="hospitality" data-pill-discipline="Content, Copy, Comms" data-employment="Internship">
           <div class="card-top">
             <span class="card-index">02</span>
+            <span class="card-index">Sept — Dec 2025</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract newsletter layout composition">
@@ -535,19 +529,17 @@ section.tight{padding-top:0;}
               <rect x="130" y="130" width="90" height="65" fill="#C99A2B" opacity="0.55"/>
             </svg>
           </div>
-          <h3>Advanced Fresh Concepts — E-Newsletters &amp; Press Kit</h3>
-          <p class="card-role">Designer · Email &amp; Editorial Design</p>
+          <h3>AFC — Press Kits &amp; E-Newsletters</h3>
+          <p class="card-role">Digital Media Intern · Email &amp; Editorial Design</p>
           <p class="desc">Designed recurring e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing editorial readability with brand-consistent visual structure.</p>
-          <div class="tag-row">
-            <span class="tag t-marketing">Marketing</span>
-            <span class="tag t-editorial">Editorial</span>
-          </div>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 3 -->
-        <article class="card reveal" data-tags="editorial social uxui" data-industry="nonprofit">
+        <article class="card reveal" data-tags="editorial social uxui" data-industry="nonprofit tech" data-pill-discipline="Social Impact,Product & Interaction" data-employment="Academic">
           <div class="card-top">
             <span class="card-index">03</span>
+            <span class="card-index">Dec 2025</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract interactive website composition">
@@ -559,20 +551,17 @@ section.tight{padding-top:0;}
               <rect x="270" y="135" width="110" height="70" fill="#C99A2B" opacity="0.4"/>
             </svg>
           </div>
-          <h3>Myanmar: A Nation in Crisis — Senior Thesis</h3>
-          <p class="card-role">Independent Study · Interactive Web Design &amp; Research</p>
-          <p class="desc">An independently researched senior thesis presented as an interactive website examining Myanmar's political and humanitarian crisis — pairing critical analysis with an information-forward interface designed for accessibility and reflection.</p>
-          <div class="tag-row">
-            <span class="tag t-editorial">Editorial</span>
-            <span class="tag t-social">Social impact</span>
-            <span class="tag t-uxui">UX / UI</span>
-          </div>
+          <h3>CUNY Senior Thesis — Interactive Web Design</h3>
+          <p class="card-role">Independent Study · The World's Longest Ongoing Civil War</p>
+          <p class="desc">An independently researched senior thesis presented as an interactive website, examining Myanmar's humanitarian crisis, pairing critical analysis with information-forward interface.</p>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 4 -->
-        <article class="card reveal" data-tags="uxui" data-industry="tech">
+        <article class="card reveal" data-tags="uxui" data-industry="tech" data-pill-discipline="Product & Interaction" data-employment="Internship">
           <div class="card-top">
             <span class="card-index">04</span>
+            <span class="card-index">June — Sept 2025</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract product interface composition">
@@ -585,18 +574,17 @@ section.tight{padding-top:0;}
               <circle cx="310" cy="150" r="30" fill="#24475A" opacity="0.35"/>
             </svg>
           </div>
-          <h3>Ubiq — UX/UI &amp; Product Lab Internship</h3>
-          <p class="card-role">Design &amp; Product Lab Intern · 3D Social Platform</p>
+          <h3>Ubiq — Heatmap &amp; Image Carousel Features</h3>
+          <p class="card-role">Design &amp; Product Lab Intern · UX/UI and Product Design</p>
           <p class="desc">Contributed to UX/UI design and product research for Ubiq, an immersive 3D social platform, working across interface design and cross-functional product lab initiatives.</p>
-          <div class="tag-row">
-            <span class="tag t-uxui">UX / UI</span>
-          </div>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 5 -->
-        <article class="card reveal" data-tags="illustration social" data-industry="nonprofit">
+        <article class="card reveal" data-tags="illustration social" data-industry="nonprofit" data-pill-discipline="Social Impact" data-employment="Academic">
           <div class="card-top">
             <span class="card-index">05</span>
+            <span class="card-index">May 2025</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract protest poster composition">
@@ -607,19 +595,17 @@ section.tight{padding-top:0;}
               <rect x="280" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.3"/>
             </svg>
           </div>
-          <h3>Political Posters — Asian American Voices Journal</h3>
-          <p class="card-role">Illustrator · CUNY Publication</p>
+          <h3>CUNY Publication — Mixed Media Political Posters</h3>
+          <p class="card-role">Student Designer · Asian American Voices Journal, Volume 7</p>
           <p class="desc">Created political poster illustrations published in CUNY's Asian American Voices journal, using bold graphic language to give visual form to political commentary.</p>
-          <div class="tag-row">
-            <span class="tag t-illustration">Illustration</span>
-            <span class="tag t-social">Social impact</span>
-          </div>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 6 -->
-        <article class="card reveal" data-tags="illustration social" data-industry="nonprofit">
+        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Artistic" data-employment="Fellowship">
           <div class="card-top">
             <span class="card-index">06</span>
+            <span class="card-index">Nov 2024</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract digital poster composition">
@@ -629,19 +615,83 @@ section.tight{padding-top:0;}
               <rect x="0" y="0" width="400" height="20" fill="#C99A2B" opacity="0.6"/>
             </svg>
           </div>
-          <h3>Digital Posters — NYC Fellows Collective</h3>
-          <p class="card-role">Illustrator · Published Collective Work</p>
+          <h3>NYC Publication — Maximalist Digital Posters</h3>
+          <p class="card-role">Art Fellow · NYC Fellows Collective, Cohort 4</p>
           <p class="desc">Designed digital posters created for and published by the NYC Fellows Collective, contributing original illustrative work to a community-driven creative platform.</p>
-          <div class="tag-row">
-            <span class="tag t-illustration">Illustration</span>
-            <span class="tag t-social">Social impact</span>
-          </div>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
         <!-- 7 -->
-        <article class="card reveal" data-tags="illustration motion" data-industry="other">
+        <article class="card reveal" data-tags="illustration" data-industry="other" data-pill-discipline="Artistic" data-employment="Contract">
           <div class="card-top">
             <span class="card-index">07</span>
+            <span class="card-index">June 2022 — June 2025</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract illustration composition">
+              <rect width="400" height="225" fill="#17181C"/>
+              <path d="M40 190 C 80 60, 160 60, 200 130 S 320 60, 360 40" fill="none" stroke="#1E3FE0" stroke-width="6"/>
+              <circle cx="200" cy="130" r="10" fill="#F1EFE8"/>
+              <circle cx="360" cy="40" r="6" fill="#C99A2B"/>
+              <circle cx="40" cy="190" r="6" fill="#C99A2B"/>
+            </svg>
+          </div>
+          <h3>Insane Ink — Graphic Design &amp; Illustration</h3>
+          <p class="card-role">Contract Artist · Graphic Design &amp; Illustration</p>
+          <p class="desc">Provided ongoing freelance graphic design and illustration work for Insane Ink, developing custom artwork and visual assets across a multi-year contract relationship. [Draft copy — let me know more specifics and I'll tighten this up.]</p>
+          <div class="tag-row" data-pillrow></div>
+        </article>
+
+        <!-- 8 -->
+        <article class="card reveal" data-tags="content marketing" data-industry="beauty" data-pill-discipline="Content, Copy, Comms" data-employment="Part-Time">
+          <div class="card-top">
+            <span class="card-index">08</span>
+            <span class="card-index">April 2021 — May 2022</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract social media grid composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="30" y="30" width="80" height="80" fill="#1E3FE0" opacity="0.75"/>
+              <rect x="120" y="30" width="80" height="80" fill="#C99A2B" opacity="0.55"/>
+              <rect x="210" y="30" width="80" height="80" fill="#24475A" opacity="0.65"/>
+              <rect x="30" y="120" width="80" height="80" fill="#24475A" opacity="0.35"/>
+              <rect x="120" y="120" width="80" height="80" fill="#1E3FE0" opacity="0.35"/>
+              <rect x="210" y="120" width="80" height="80" fill="#C99A2B" opacity="0.35"/>
+            </svg>
+          </div>
+          <h3>Beauty Strike — Email, SMS, Social Media</h3>
+          <p class="card-role">Digital Creative Assistant · Digital Marketing</p>
+          <p class="desc">Produced email, SMS, and social media content for Beauty Strike, designing visual assets aligned with brand tone across owned marketing channels.</p>
+          <div class="tag-row" data-pillrow></div>
+        </article>
+
+        <!-- 9 -->
+        <article class="card reveal" data-tags="uxui" data-industry="beauty" data-pill-discipline="Product & Interaction" data-employment="Internship">
+          <div class="card-top">
+            <span class="card-index">09</span>
+            <span class="card-index">August 2026</span>
+          </div>
+          <div class="card-art">
+            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract product prototype composition">
+              <rect width="400" height="225" fill="#EFE6D2"/>
+              <rect x="50" y="40" width="140" height="145" rx="6" fill="none" stroke="#17181C" stroke-width="2"/>
+              <line x1="50" y1="80" x2="190" y2="80" stroke="#17181C" stroke-width="1.5" opacity="0.5"/>
+              <line x1="50" y1="120" x2="190" y2="120" stroke="#17181C" stroke-width="1.5" opacity="0.5"/>
+              <circle cx="290" cy="110" r="55" fill="#1E3FE0" opacity="0.75"/>
+              <rect x="250" y="150" width="80" height="10" fill="#C99A2B" opacity="0.6"/>
+            </svg>
+          </div>
+          <h3>Karbon Footprint — Tech Pack &amp; Prototype</h3>
+          <p class="card-role">Product Lab Intern · Product Design</p>
+          <p class="desc">Contributed to tech pack development and prototyping for Karbon Footprint's product lab. [Draft copy — let me know more specifics and I'll tighten this up.]</p>
+          <div class="tag-row" data-pillrow></div>
+        </article>
+
+        <!-- 10 -->
+        <article class="card reveal" data-tags="motion" data-industry="other" data-pill-discipline="Artistic" data-employment="Academic">
+          <div class="card-top">
+            <span class="card-index">10</span>
+            <span class="card-index">March 2025 — Dec 2025</span>
           </div>
           <div class="card-art">
             <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract illustration and motion frame composition">
@@ -655,38 +705,10 @@ section.tight{padding-top:0;}
               <text x="30" y="200" font-family="IBM Plex Mono, monospace" font-size="11" fill="#84837D">FRAME 01 — 06</text>
             </svg>
           </div>
-          <h3>Illustration, Animation &amp; Video Editing</h3>
-          <p class="card-role">Coursework · Illustration &amp; Motion Design</p>
-          <p class="desc">A body of general illustrative and motion work developed across college coursework, spanning hand-drawn and digital illustration, frame-by-frame animation, and video editing.</p>
-          <div class="tag-row">
-            <span class="tag t-illustration">Illustration</span>
-            <span class="tag t-motion">Motion</span>
-          </div>
-        </article>
-
-        <!-- 8 -->
-        <article class="card reveal" data-tags="marketing branding" data-industry="beauty">
-          <div class="card-top">
-            <span class="card-index">08 / Earliest</span>
-          </div>
-          <div class="card-art">
-            <svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract social media grid composition">
-              <rect width="400" height="225" fill="#EFE6D2"/>
-              <rect x="30" y="30" width="80" height="80" fill="#1E3FE0" opacity="0.75"/>
-              <rect x="120" y="30" width="80" height="80" fill="#C99A2B" opacity="0.55"/>
-              <rect x="210" y="30" width="80" height="80" fill="#24475A" opacity="0.65"/>
-              <rect x="30" y="120" width="80" height="80" fill="#24475A" opacity="0.35"/>
-              <rect x="120" y="120" width="80" height="80" fill="#1E3FE0" opacity="0.35"/>
-              <rect x="210" y="120" width="80" height="80" fill="#C99A2B" opacity="0.35"/>
-            </svg>
-          </div>
-          <h3>Email &amp; Social Media Marketing — NYC Beauty Co.</h3>
-          <p class="card-role">Marketing Designer · Beauty &amp; Lifestyle</p>
-          <p class="desc">Produced email campaigns and social media content for an NYC-based beauty company, designing visual assets aligned with brand tone across owned marketing channels.</p>
-          <div class="tag-row">
-            <span class="tag t-marketing">Marketing</span>
-            <span class="tag t-branding">Branding</span>
-          </div>
+          <h3>CUNY Queens College — Animation, Motion, Video</h3>
+          <p class="card-role">Student · College Coursework</p>
+          <p class="desc">A body of general animation, motion, and video work developed across coursework at CUNY Queens College, spanning frame-by-frame animation, motion design, and video editing.</p>
+          <div class="tag-row" data-pillrow></div>
         </article>
 
       </div>
@@ -776,7 +798,7 @@ section.tight{padding-top:0;}
     });
   });
 
-  var roles = ['editorial', 'marketing', 'civic work', 'branding', 'product', 'illustration'];
+  var roles = ['marketing', 'branding', 'social impact', 'product design', 'editorial', 'illustration'];
   var roleSlot = document.getElementById('roleSlot');
   var idx = 0;
   roleSlot.style.transition = 'opacity .22s ease';
@@ -812,6 +834,46 @@ section.tight{padding-top:0;}
     if (countEl) countEl.textContent = shown + ' of ' + total + ' shown';
   }
 
+  var industryLabels = {
+    hospitality: 'Hospitality',
+    tech: 'Technology',
+    beauty: 'Beauty & Fashion',
+    nonprofit: 'Nonprofit',
+    other: 'Artistic'
+  };
+
+  function renderPills(){
+    cards.forEach(function(card){
+      var row = card.querySelector('[data-pillrow]');
+      if (!row) return;
+
+      var axisLabels;
+      if (currentMode === 'industry') {
+        axisLabels = (card.getAttribute('data-pill-discipline') || '').split(',').filter(Boolean);
+      } else {
+        var industryKeys = (card.getAttribute('data-industry') || '').split(' ').filter(Boolean);
+        axisLabels = industryKeys.map(function(k){ return industryLabels[k]; }).filter(Boolean);
+      }
+
+      var employment = card.getAttribute('data-employment') || '';
+      var pieces = axisLabels.concat(employment ? [employment] : []);
+
+      row.innerHTML = '';
+      pieces.forEach(function(text, i){
+        if (i > 0) {
+          var dot = document.createElement('span');
+          dot.className = 'dot-sep';
+          row.appendChild(dot);
+        }
+        var span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = text;
+        row.appendChild(span);
+      });
+    });
+  }
+  renderPills();
+
   function bindChipRow(row){
     if (!row) return;
     row.querySelectorAll('.chip').forEach(function(chip){
@@ -846,6 +908,7 @@ section.tight{padding-top:0;}
         if (allChip) allChip.classList.add('active');
       });
       applyFilter('all');
+      renderPills();
     });
   });
 
