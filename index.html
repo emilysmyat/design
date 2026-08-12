@@ -64,6 +64,7 @@ button{font-family:inherit;}
   text-transform:uppercase;
   color:var(--ink-faint);
 }
+#contact .eyebrow{transform:translateY(6px);}
 .eyebrow em{font-style:normal;color:var(--red);}
 
 h1,h2,h3{
@@ -108,14 +109,9 @@ h1,h2,h3{
   overflow:hidden;
   border-bottom:1px solid var(--line);
 }
-.hero-grid{
+.hero-trail-canvas{
   position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size:64px 64px;
-  opacity:.35;
-  mask-image:radial-gradient(ellipse 90% 70% at 60% 30%, black 10%, transparent 75%);
+  width:100%;height:100%;
   pointer-events:none;
 }
 .hero-inner{position:relative;}
@@ -180,6 +176,8 @@ section.tight{padding-top:0;}
 
 /* ============ FILTER BAR ============ */
 .index-section{border-bottom:1px solid var(--line);}
+#work{padding-bottom:56px;}
+#about{padding:56px 0;}
 .filterbar{
   position:sticky;
   top:63px;
@@ -320,7 +318,7 @@ section.tight{padding-top:0;}
   display:grid;
   grid-template-columns:1.1fr 1fr;
   gap:72px;
-  align-items:start;
+  align-items:stretch;
 }
 .about-bio p{font-size:18px;color:var(--ink-soft);max-width:58ch;}
 .about-bio p + p{margin-top:18px;}
@@ -343,40 +341,28 @@ section.tight{padding-top:0;}
 .skill-list li span:last-child{color:var(--ink-faint);font-family:'IBM Plex Mono', monospace;font-size:12px;}
 
 /* ============ CONTACT ============ */
-.contact{
-  background:var(--ink);
-  color:var(--paper);
-  border-top:1px solid var(--line);
+.about-contact-heading{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:800;
+  color:var(--ink);
+  font-size:clamp(26px,3.2vw,34px);
+  max-width:20ch;
+  margin:14px 0 28px;
 }
-.contact .eyebrow{color:var(--paper-2);}
-.contact .eyebrow em{color:var(--red);}
-.contact h2{
-  color:var(--paper);
-  font-size:clamp(32px,5vw,58px);
-  max-width:16ch;
-}
-.contact-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-end;
-  gap:32px;
-  flex-wrap:wrap;
-  margin-top:40px;
-}
-.contact-links{display:flex;flex-direction:column;gap:2px;}
-.contact-links a{
+.about-contact-links{display:flex;flex-direction:column;gap:2px;margin-bottom:6px;}
+.about-contact-links a{
   font-family:'Archivo Expanded', sans-serif;
   font-weight:700;
-  font-size:22px;
+  font-size:19px;
   text-decoration:none;
-  color:var(--paper);
-  border-bottom:1px solid rgba(238,237,235,.25);
+  color:var(--ink);
+  border-bottom:1px solid var(--line);
   padding:10px 0;
   transition:color .15s var(--ease), border-color .15s var(--ease);
   display:flex;align-items:center;gap:10px;
 }
-.contact-links a:hover{color:var(--red);border-color:var(--red);}
-.contact-links a .arrow{font-family:'IBM Plex Mono', monospace;font-size:15px;}
+.about-contact-links a:hover{color:var(--red);border-color:var(--red);}
+.about-contact-links a .arrow{font-family:'IBM Plex Mono', monospace;font-size:15px;}
 .resume-btn{
   font-family:'IBM Plex Mono', monospace;
   font-size:13px;
@@ -388,19 +374,34 @@ section.tight{padding-top:0;}
   border-radius:100px;
   text-decoration:none;
   white-space:nowrap;
+  display:inline-block;
   transition:background .15s var(--ease), color .15s var(--ease);
 }
 .resume-btn:hover{background:transparent;color:var(--paper);}
+.about-contact-col{
+  display:flex;
+  flex-direction:column;
+}
+.about-resume-btn{
+  background:var(--ink);
+  color:var(--paper);
+  border:1px solid var(--ink);
+  margin-top:auto;
+  align-self:flex-start;
+  transform:translateY(-18px);
+}
+.about-resume-btn:hover{background:transparent;color:var(--ink);}
 
+.site-foot{
+  border-top:1px solid var(--line);
+}
 .foot{
-  border-top:1px solid rgba(238,237,235,.18);
-  margin-top:72px;
-  padding-top:24px;
+  padding:24px 0;
   display:flex;
   justify-content:space-between;
   font-family:'IBM Plex Mono', monospace;
   font-size:12px;
-  color:var(--paper-2);
+  color:var(--ink-faint);
   flex-wrap:wrap;
   gap:10px;
 }
@@ -431,6 +432,9 @@ section.tight{padding-top:0;}
   .hero-stat{flex:1 1 45%;margin-bottom:16px;}
   .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
+  .about-contact-col{display:block;}
+  .about-resume-btn{margin-top:32px;transform:none;}
+  #contact .eyebrow{transform:none;}
   .contact-row{flex-direction:column;align-items:flex-start;}
   .filter-count{width:100%;margin-left:0;order:-1;margin-bottom:4px;}
 }
@@ -458,7 +462,7 @@ section.tight{padding-top:0;}
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-grid" aria-hidden="true"></div>
+    <canvas class="hero-trail-canvas" id="heroTrailCanvas" aria-hidden="true"></canvas>
     <div class="wrap hero-inner">
       <p class="eyebrow">Creative Design <em>&amp;</em> Communications — New York, NY</p>
       <h1>I work across <span class="role-slot" id="roleSlot">marketing</span><br>and everywhere in between.</h1>
@@ -725,7 +729,7 @@ section.tight{padding-top:0;}
           </div>
           <h3>Karbon Footprint — Tech Pack &amp; Prototype</h3>
           <p class="card-role">Product Lab Intern · Product Design</p>
-          <p class="desc">Designed purse design mockups and developed a full tech pack, for an emerging environmentally conscious fashion brand focused on sustainability.</p>
+          <p class="desc">Developed purse design mockups and a full tech pack, for an emerging environmentally conscious fashion brand centered around sustainability.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -750,9 +754,9 @@ section.tight{padding-top:0;}
               <text x="30" y="200" font-family="IBM Plex Mono, monospace" font-size="11" fill="#84837D">FRAME 01 — 06</text>
             </svg>
           </div>
-          <h3>CUNY Queens College — Animation, Motion, Video</h3>
+          <h3>CUNY Queens — Animation, Motion, Video</h3>
           <p class="card-role">Student · College Coursework</p>
-          <p class="desc">A body of top-graded coursework from CUNY Queens College, spanning motion graphics, frame-by-frame animation, and short-form video editing.</p>
+          <p class="desc">A body of top-graded coursework completed at Queens College, spanning motion graphics, frame-by-frame animation, and short-form video editing.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -766,64 +770,35 @@ section.tight{padding-top:0;}
   <!-- ============ ABOUT ============ -->
   <section id="about">
     <div class="wrap">
-      <div class="section-head reveal">
+      <div class="section-head reveal" style="margin-bottom:20px;">
         <h2>About</h2>
-        <span class="section-tag">Range, by design</span>
       </div>
       <div class="about-grid reveal">
         <div class="about-bio">
-          <p>I move between disciplines on purpose. Brand campaigns taught me how a single visual system has to hold up across a dozen touchpoints; UX work taught me how to design for a person's actual behavior, not just their attention; editorial and civic-facing projects taught me that design can carry an argument, not just a message.</p>
-          <p>That range is the point, not a scatter of side projects. Whether the brief is a hospitality brand's newsletter or a thesis on a humanitarian crisis, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there.</p>
+          <p>I move between disciplines on purpose. To me, design is less about mastering a single skill and more so a way of asking questions — what does this need to say, who needs to hear it, and what's getting in the way of that? Sometimes the answer is a system with rules and consistency. Sometimes it's a single image that doesn't need any words at all.</p>
+          <p>That range is the point, not a scatter of side projects. I've never believed a career has to read like a straight line; most people's actual thinking doesn't work that way. Mine has zigzagged between commercial work and work that matters to me for reasons that have nothing to do with a resume. No matter what, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there?</p>
         </div>
-        <div>
-          <div class="skill-block">
-            <h4>Design &amp; Brand</h4>
-            <ul class="skill-list">
-              <li><span>Visual identity &amp; brand systems</span><span>Branding</span></li>
-              <li><span>Marketing collateral &amp; campaigns</span><span>Marketing</span></li>
-              <li><span>Editorial &amp; publication layout</span><span>Editorial</span></li>
-            </ul>
+        <div id="contact" class="about-contact-col">
+          <p class="eyebrow">Currently <em>open</em> to opportunities</p>
+          <h3 class="about-contact-heading">Let's work together.</h3>
+          <div class="about-contact-links">
+            <a href="mailto:emilysmyat@outlook.com"><span class="arrow">→</span> emilysmyat@outlook.com</a>
+            <a href="https://linkedin.com/in/emilysmyat" target="_blank" rel="noopener"><span class="arrow">→</span> LinkedIn</a>
+            <a href="https://yourname.com" target="_blank" rel="noopener"><span class="arrow">→</span> Instagram</a>
           </div>
-          <div class="skill-block">
-            <h4>Product &amp; Interaction</h4>
-            <ul class="skill-list">
-              <li><span>UX / UI design</span><span>Product</span></li>
-              <li><span>Interactive web design</span><span>Web</span></li>
-              <li><span>Product research &amp; lab work</span><span>Research</span></li>
-            </ul>
-          </div>
-          <div class="skill-block">
-            <h4>Illustration &amp; Motion</h4>
-            <ul class="skill-list">
-              <li><span>Editorial &amp; political illustration</span><span>Illustration</span></li>
-              <li><span>Animation &amp; video editing</span><span>Motion</span></li>
-              <li><span>Digital poster design</span><span>Print / digital</span></li>
-            </ul>
-          </div>
+          <a href="#" class="resume-btn about-resume-btn">Download resume ↓</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section class="contact" id="contact">
-    <div class="wrap">
-      <p class="eyebrow reveal">Currently <em>open</em> to opportunities</p>
-      <h2 class="reveal">Let's work on something together.</h2>
-      <div class="contact-row reveal">
-        <div class="contact-links">
-          <a href="mailto:hello@yourname.com"><span class="arrow">→</span> hello@yourname.com</a>
-          <a href="https://www.linkedin.com/in/yourname" target="_blank" rel="noopener"><span class="arrow">→</span> LinkedIn</a>
-          <a href="https://yourname.com" target="_blank" rel="noopener"><span class="arrow">→</span> Instagram / Behance</a>
-        </div>
-        <a href="#" class="resume-btn">Download resume ↓</a>
-      </div>
-      <div class="foot">
-        <span>© <span id="year"></span> — Portfolio Index</span>
-        <span>Designed &amp; built as a living document</span>
-      </div>
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-foot">
+    <div class="wrap foot">
+      <span>© <span id="year"></span> — Portfolio Index</span>
+      <span>Designed &amp; built as a living document</span>
     </div>
-  </section>
+  </footer>
 
 </main>
 
@@ -858,6 +833,83 @@ section.tight{padding-top:0;}
       roleSlot.style.opacity = '1';
     }, 220);
   }, 1700);
+
+  if (!reduceMotion) {
+    (function(){
+      var heroEl = document.querySelector('.hero');
+      var canvas = document.getElementById('heroTrailCanvas');
+      if (!heroEl || !canvas) return;
+      var ctx = canvas.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+
+      function resizeCanvas(){
+        var w = heroEl.clientWidth, h = heroEl.clientHeight;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      var pts = [];
+      var wi = 0;
+      var lastX = null, lastY = null;
+      var spawnEvery = 34;
+
+      function spawn(x, y){
+        pts.push({ x: x, y: y, word: roles[wi % roles.length], life: 1 });
+        wi++;
+      }
+
+      function maybeSpawn(x, y){
+        if (lastX === null) {
+          spawn(x, y);
+          lastX = x; lastY = y;
+          return;
+        }
+        var dx = x - lastX, dy = y - lastY;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist >= spawnEvery) {
+          var steps = Math.floor(dist / spawnEvery);
+          for (var i = 1; i <= steps; i++) {
+            var t = (i * spawnEvery) / dist;
+            spawn(lastX + dx * t, lastY + dy * t);
+          }
+          lastX = x; lastY = y;
+        }
+      }
+
+      heroEl.addEventListener('mousemove', function(e){
+        var r = heroEl.getBoundingClientRect();
+        maybeSpawn(e.clientX - r.left, e.clientY - r.top);
+      });
+      heroEl.addEventListener('mouseleave', function(){
+        lastX = null; lastY = null;
+      });
+
+      ctx.font = "11px 'IBM Plex Mono', monospace";
+      ctx.textBaseline = 'middle';
+
+      function draw(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (var i = pts.length - 1; i >= 0; i--) {
+          var p = pts[i];
+          p.life -= 0.012;
+          if (p.life <= 0) { pts.splice(i, 1); continue; }
+          ctx.save();
+          ctx.globalAlpha = Math.min(1, p.life * 1.3);
+          ctx.fillStyle = '#1E3FE0';
+          ctx.translate(p.x, p.y - (1 - p.life) * 16);
+          ctx.fillText(p.word, 0, 0);
+          ctx.restore();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+  }
 
   var cards = document.querySelectorAll('.card');
   var countEl = document.getElementById('filterCount');
