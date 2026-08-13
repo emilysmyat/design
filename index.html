@@ -169,9 +169,6 @@ h1,h2,h3{
   gap:32px;
   margin-top:28px;
 }
-@media (max-width:1440px){
-  .hero-sub-row{flex-direction:column;gap:20px;}
-}
 .hero-sub{
   margin:0;
   max-width:52ch;
@@ -282,7 +279,7 @@ section.tight{padding-top:0;}
 }
 .mode-toggle:hover{border-color:var(--ink);}
 .mode-toggle:hover .mode-btn:not(.active){color:var(--ink);}
-.mode-btn.active{background:var(--active-fill);color:var(--ink);border:1px solid var(--ink);}
+.mode-btn.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);color:var(--ink);border:1px solid var(--ink);}
 .sort-label{
   font-family:'IBM Plex Mono', monospace;
   font-size:14px;
@@ -311,36 +308,29 @@ section.tight{padding-top:0;}
   white-space:nowrap;
 }
 .chip:hover{border-color:var(--ink);color:var(--ink);}
-.chip.active{background:var(--active-fill);border-color:var(--ink);color:var(--ink);}
+.chip.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);border-color:var(--ink);color:var(--ink);}
 
 /* ============ PROJECT GRID ============ */
 .project-grid{
-  display:flex;
-  flex-direction:column;
-  gap:28px;
-}
-.card-row{
   position:relative;
   display:grid;
   grid-template-columns:repeat(2, 1fr);
   gap:28px;
 }
-.card-row::before{
-  content:'';
+.row-glow-el{
   position:absolute;
-  inset:-28px;
+  pointer-events:none;
+  z-index:0;
   background:radial-gradient(ellipse at center, rgba(30,63,224,0.16), transparent 70%);
   filter:blur(24px);
   opacity:0;
   transition:opacity .6s var(--ease);
-  pointer-events:none;
-  z-index:0;
 }
-.card-row.glow-active::before{opacity:1;}
-.card-row > .card{position:relative;z-index:1;}
+.row-glow-el.glow-active{opacity:1;}
 .card{
   background:var(--card-bg);
   padding:32px;
+  position:relative;z-index:1;
   display:flex;
   flex-direction:column;
   gap:18px;
@@ -530,7 +520,7 @@ section.tight{padding-top:0;}
   .hero-sub-row{flex-direction:column;gap:20px;}
   .hero-stats{flex-wrap:wrap;}
   .hero-stat{flex:1 1 45%;margin-bottom:16px;}
-  .card-row{grid-template-columns:1fr;}
+  .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-contact-col{display:block;}
   .about-resume-btn{margin-top:32px;transform:none;}
@@ -613,11 +603,11 @@ section.tight{padding-top:0;}
     <div class="filterbar">
       <div class="filterbar-inner chip-row" id="disciplineChips">
         <button class="chip active" data-filter="all">All work</button>
-        <button class="chip" data-filter="branding">Branding &amp; Marketing</button>
+        <button class="chip" data-filter="marketing">Marketing</button>
         <button class="chip" data-filter="content">Content, Copy, Comms</button>
         <button class="chip" data-filter="uxui">Product &amp; Interaction</button>
         <button class="chip" data-filter="social">Social Impact</button>
-        <button class="chip" data-filter="motion">Artistic</button>
+        <button class="chip" data-filter="motion">Art</button>
       </div>
       <div class="filterbar-inner chip-row" id="industryChips" hidden>
         <button class="chip active" data-filter="all">All work</button>
@@ -625,16 +615,15 @@ section.tight{padding-top:0;}
         <button class="chip" data-filter="tech">Technology</button>
         <button class="chip" data-filter="beauty">Beauty &amp; Fashion</button>
         <button class="chip" data-filter="nonprofit">Nonprofit</button>
-        <button class="chip" data-filter="other">Artistic</button>
+        <button class="chip" data-filter="other">Creative Arts</button>
       </div>
     </div>
 
     <div class="wrap">
       <div class="project-grid" id="projectGrid">
-        <div class="card-row">
 
         <!-- 1 -->
-        <article class="card" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Branding & Marketing" data-employment="Full-Time">
+        <article class="card" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Marketing" data-employment="Full-Time">
           <div class="card-top">
             <span class="card-index">01</span>
             <span class="card-index">May 2026 — Present</span>
@@ -682,9 +671,6 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
-        </div>
-
-        <div class="card-row">
 
         <!-- 3 -->
         <article class="card reveal" data-tags="editorial social uxui" data-industry="nonprofit tech" data-pill-discipline="Social Impact,Product & Interaction" data-employment="Academic">
@@ -736,9 +722,6 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
-        </div>
-
-        <div class="card-row">
 
         <!-- 5 -->
         <article class="card reveal" data-tags="illustration social" data-industry="nonprofit" data-pill-discipline="Social Impact" data-employment="Academic">
@@ -765,7 +748,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 6 -->
-        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Artistic" data-employment="Fellowship">
+        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Art" data-employment="Fellowship">
           <div class="card-top">
             <span class="card-index">06</span>
             <span class="card-index">Nov 2024</span>
@@ -786,12 +769,9 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
-        </div>
-
-        <div class="card-row">
 
         <!-- 7 -->
-        <article class="card reveal" data-tags="illustration" data-industry="other" data-pill-discipline="Artistic" data-employment="Contract">
+        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Art" data-employment="Contract">
           <div class="card-top">
             <span class="card-index">07</span>
             <span class="card-index">June 2022 — June 2025</span>
@@ -815,7 +795,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 8 -->
-        <article class="card reveal" data-tags="content marketing" data-industry="beauty" data-pill-discipline="Content, Copy, Comms" data-employment="Part-Time">
+        <article class="card reveal" data-tags="content marketing" data-industry="beauty" data-pill-discipline="Marketing,Content, Copy, Comms" data-employment="Part-Time">
           <div class="card-top">
             <span class="card-index">08</span>
             <span class="card-index">April 2021 — May 2022</span>
@@ -839,9 +819,6 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
-        </div>
-
-        <div class="card-row">
 
         <!-- 9 -->
         <article class="card reveal" data-tags="uxui" data-industry="beauty" data-pill-discipline="Product & Interaction" data-employment="Internship">
@@ -869,7 +846,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 10 -->
-        <article class="card reveal" data-tags="motion" data-industry="other" data-pill-discipline="Artistic" data-employment="Academic">
+        <article class="card reveal" data-tags="motion" data-industry="other" data-pill-discipline="Art" data-employment="Academic">
           <div class="card-top">
             <span class="card-index">10</span>
             <span class="card-index">March 2025 — Dec 2025</span>
@@ -894,7 +871,6 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
-        </div>
 
       </div>
     </div>
@@ -1079,7 +1055,7 @@ section.tight{padding-top:0;}
     tech: 'Technology',
     beauty: 'Beauty & Fashion',
     nonprofit: 'Nonprofit',
-    other: 'Artistic'
+    other: 'Creative Arts'
   };
 
   function renderPills(){
@@ -1116,24 +1092,60 @@ section.tight{padding-top:0;}
   }
   renderPills();
 
-  var cardRows = document.querySelectorAll('.card-row');
+  var projectGrid = document.getElementById('projectGrid');
   var rowGlowTicking = false;
+  var glowPool = [];
+
+  function getGlowEl(i){
+    if (!glowPool[i]) {
+      var el = document.createElement('div');
+      el.className = 'row-glow-el';
+      projectGrid.insertBefore(el, projectGrid.firstChild);
+      glowPool[i] = el;
+    }
+    return glowPool[i];
+  }
 
   function updateRowGlows(){
-    if (!cardRows.length) return;
+    if (!projectGrid) return;
     var vh = window.innerHeight;
-    cardRows.forEach(function(row){
-      var cardsInRow = row.querySelectorAll('.card:not(.is-hidden)');
-      var mostlyVisible = cardsInRow.length > 0 && Array.prototype.every.call(cardsInRow, function(c){
-        var r = c.getBoundingClientRect();
+    var visibleCards = Array.prototype.filter.call(
+      projectGrid.querySelectorAll('.card'),
+      function(c){ return !c.classList.contains('is-hidden'); }
+    );
+
+    var pairCount = Math.ceil(visibleCards.length / 2);
+    for (var i = 0; i < pairCount; i++) {
+      var pair = visibleCards.slice(i * 2, i * 2 + 2);
+      var glowEl = getGlowEl(i);
+
+      var rects = pair.map(function(c){ return c.getBoundingClientRect(); });
+      var gridRect = projectGrid.getBoundingClientRect();
+      var top = Math.min.apply(null, rects.map(function(r){ return r.top; })) - gridRect.top;
+      var bottom = Math.max.apply(null, rects.map(function(r){ return r.bottom; })) - gridRect.top;
+      var left = Math.min.apply(null, rects.map(function(r){ return r.left; })) - gridRect.left;
+      var right = Math.max.apply(null, rects.map(function(r){ return r.right; })) - gridRect.left;
+
+      var pad = 28;
+      glowEl.style.top = (top - pad) + 'px';
+      glowEl.style.left = (left - pad) + 'px';
+      glowEl.style.width = (right - left + pad * 2) + 'px';
+      glowEl.style.height = (bottom - top + pad * 2) + 'px';
+
+      var mostlyVisible = pair.length > 0 && rects.every(function(r){
         if (r.height <= 0) return false;
         var visibleTop = Math.max(r.top, 0);
         var visibleBottom = Math.min(r.bottom, vh);
         var visibleHeight = Math.max(0, visibleBottom - visibleTop);
         return (visibleHeight / r.height) >= 0.75;
       });
-      row.classList.toggle('glow-active', mostlyVisible);
-    });
+      glowEl.classList.toggle('glow-active', mostlyVisible);
+      glowEl.style.display = '';
+    }
+    for (var j = pairCount; j < glowPool.length; j++) {
+      glowPool[j].style.display = 'none';
+      glowPool[j].classList.remove('glow-active');
+    }
     rowGlowTicking = false;
   }
 
