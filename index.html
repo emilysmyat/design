@@ -16,6 +16,7 @@
   --ink:#17181C;
   --ink-soft:#4B4C50;
   --ink-faint:#84837D;
+  --active-fill:#A9AEB4;
   --red:#1E3FE0;
   --red-deep:#0F2794;
   --blue:#24475A;
@@ -83,28 +84,65 @@ h1,h2,h3{
   border-bottom:1px solid var(--line);
 }
 .topbar-inner{
-  max-width:var(--maxw);margin:0 auto;padding:0 32px;
+  padding:0 24px;
   height:64px;
-  display:flex;align-items:center;justify-content:space-between;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
 }
+.topbar-tagline{
+  justify-self:center;
+  margin:0;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:12px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  white-space:nowrap;
+}
+.topbar-tagline em{font-style:normal;color:var(--red);}
+.topbar-nav-wrap{justify-self:end;display:flex;align-items:center;}
 .brandmark{
   font-family:'IBM Plex Mono', monospace;
   font-weight:600;
   font-size:14px;
   letter-spacing:.03em;
   text-decoration:none;
-  display:flex;align-items:center;gap:8px;
+  color:var(--ink-soft);
+  position:relative;
+  justify-self:start;
 }
-.brandmark .dot{width:8px;height:8px;background:var(--red);border-radius:50%;display:inline-block;flex:none;}
 .topnav{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-family:'IBM Plex Mono', monospace;font-size:14px;}
-.topnav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent;transition:color .15s var(--ease), border-color .15s var(--ease);}
+.topnav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent;position:relative;transition:color .15s var(--ease), border-color .15s var(--ease);}
 .topnav a:hover{color:var(--ink);border-color:var(--red);}
+.topnav a::before,
+.brandmark::before,
+.about-contact-links a::before{
+  content:'';
+  position:absolute;
+  inset:-9px;
+  background:radial-gradient(ellipse 65% 38% at center, rgba(30,63,224,0.24), transparent 80%);
+  filter:blur(8px);
+  opacity:0;
+  transition:opacity .3s var(--ease);
+  pointer-events:none;
+}
+.topnav a::before,
+.brandmark::before{
+  inset:-18px;
+}
+.brandmark::before{
+  background:radial-gradient(ellipse 65% 38% at center, rgba(30,63,224,0.27), transparent 80%);
+}
+.topnav a:hover::before,
+.brandmark:hover::before,
+.about-contact-links a:hover::before{
+  opacity:1;
+}
 .navtoggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;}
 .navtoggle span{display:block;width:18px;height:2px;background:var(--ink);margin:4px 0;}
 
 /* ============ HERO ============ */
 .hero{
-  padding:56px 0;
+  padding:57px 0;
   position:relative;
   overflow:hidden;
   border-bottom:1px solid var(--line);
@@ -115,7 +153,6 @@ h1,h2,h3{
   pointer-events:none;
 }
 .hero-inner{position:relative;}
-.hero .eyebrow{margin-bottom:22px;font-size:14px;}
 .hero h1{
   font-size:clamp(25.2px, 6vw, 63px);
   max-width:32ch;
@@ -125,36 +162,49 @@ h1,h2,h3{
   display:inline-block;
   min-width:1ch;
 }
+.hero-sub-row{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:32px;
+  margin-top:28px;
+}
+@media (max-width:1440px){
+  .hero-sub-row{flex-direction:column;gap:20px;}
+}
 .hero-sub{
-  margin:28px 0 0;
-  max-width:64ch;
+  margin:0;
+  max-width:52ch;
   font-size:20px;
   color:var(--ink-soft);
+  flex:1;
+}
+.nowrap-line{white-space:nowrap;}
+@media (max-width:600px){
+  .nowrap-line{white-space:normal;}
 }
 .hero-stats{
   display:flex;
-  gap:0;
-  margin-top:56px;
-  border-top:1px solid var(--line-strong);
-  max-width:640px;
+  gap:24px;
+  flex:none;
 }
 .hero-stat{
-  flex:1;
-  padding:16px 20px 0 0;
-  border-right:1px solid var(--line);
-  text-align:center;
+  flex:none;
+  padding-top:2px;
+  text-align:left;
+  position:relative;
 }
-.hero-stat:last-child{border-right:none;}
 .hero-stat .num{
   font-family:'Archivo Expanded', sans-serif;
   font-weight:700;
-  font-size:28px;
+  font-size:20px;
   display:block;
+  color:var(--red);
 }
 .hero-stat .lbl{
   font-family:'IBM Plex Mono', monospace;
-  font-size:14px;
-  color:var(--ink-faint);
+  font-size:12px;
+  color:var(--ink);
   text-transform:uppercase;
   letter-spacing:.06em;
 }
@@ -168,7 +218,29 @@ h1,h2,h3{
   margin-bottom:40px;
   flex-wrap:wrap;
 }
+.work-head-row{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:16px;
+}
+.work-head-row h2{justify-self:start;}
+.work-head-row .sort-controls{
+  position:relative;
+  justify-self:center;
+}
+.work-head-row .sort-controls .sort-label{
+  position:absolute;
+  right:calc(100% + 10px);
+  top:50%;
+  transform:translateY(-50%);
+}
+.work-head-row .filter-count{
+  justify-self:end;
+  margin-left:0;
+}
 .section-head h2{font-size:clamp(28px,3.6vw,40px);}
+.work-head-row h2{font-size:clamp(17.17px,2.21vw,24.57px);color:var(--red);}
 .section-tag{font-family:'IBM Plex Mono', monospace;font-size:14px;color:var(--ink-faint);display:block;margin-bottom:36px;}
 
 section{padding:88px 0;}
@@ -179,24 +251,22 @@ section.tight{padding-top:0;}
 #work{padding-bottom:56px;}
 #about{padding:56px 0;}
 .filterbar{
-  position:sticky;
-  top:63px;
-  z-index:50;
   background:var(--paper);
   border-bottom:1px solid var(--line);
-  margin-bottom:56px;
+  margin-bottom:57px;
 }
 .filterbar-inner{
   max-width:var(--maxw);margin:0 auto;padding:18px 32px;
   display:flex;gap:10px;flex-wrap:wrap;align-items:center;
 }
-.filterbar-inner.chip-row{padding-top:0;}
+.filterbar-inner.chip-row{padding-top:0;justify-content:space-between;gap:18px;}
 .mode-toggle{
   display:inline-flex;
   border:1px solid var(--line-strong);
   border-radius:100px;
   padding:3px;
   gap:3px;
+  transition:border-color .15s var(--ease);
 }
 .mode-btn{
   font-family:'IBM Plex Mono', monospace;
@@ -210,8 +280,9 @@ section.tight{padding-top:0;}
   cursor:pointer;
   transition:background .15s var(--ease), color .15s var(--ease);
 }
-.mode-btn:hover{color:var(--ink);}
-.mode-btn.active{background:var(--red);color:var(--paper);}
+.mode-toggle:hover{border-color:var(--ink);}
+.mode-toggle:hover .mode-btn:not(.active){color:var(--ink);}
+.mode-btn.active{background:var(--active-fill);color:var(--ink);border:1px solid var(--ink);}
 .sort-label{
   font-family:'IBM Plex Mono', monospace;
   font-size:14px;
@@ -233,21 +304,40 @@ section.tight{padding-top:0;}
   background:transparent;
   border:1px solid var(--line-strong);
   color:var(--ink-soft);
-  padding:8px 14px;
-  border-radius:100px;
+  padding:5px 8px;
+  border-radius:var(--radius-md);
   cursor:pointer;
   transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
   white-space:nowrap;
 }
 .chip:hover{border-color:var(--ink);color:var(--ink);}
-.chip.active{background:var(--ink);border-color:var(--ink);color:var(--paper);}
+.chip.active{background:var(--active-fill);border-color:var(--ink);color:var(--ink);}
 
 /* ============ PROJECT GRID ============ */
 .project-grid{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+.card-row{
+  position:relative;
   display:grid;
   grid-template-columns:repeat(2, 1fr);
   gap:28px;
 }
+.card-row::before{
+  content:'';
+  position:absolute;
+  inset:-28px;
+  background:radial-gradient(ellipse at center, rgba(30,63,224,0.16), transparent 70%);
+  filter:blur(24px);
+  opacity:0;
+  transition:opacity .6s var(--ease);
+  pointer-events:none;
+  z-index:0;
+}
+.card-row.glow-active::before{opacity:1;}
+.card-row > .card{position:relative;z-index:1;}
 .card{
   background:var(--card-bg);
   padding:32px;
@@ -258,7 +348,13 @@ section.tight{padding-top:0;}
   transform:translateY(0);
   border:1px solid var(--line);
   border-radius:var(--radius-md);
-  transition:opacity .35s var(--ease), transform .35s var(--ease);
+  cursor:pointer;
+  transition:opacity .35s var(--ease), transform .35s var(--ease), border-color .18s var(--ease), border-width .18s var(--ease);
+}
+.card:hover,
+.card.card-active{
+  border-color:var(--red);
+  border-width:1.25px;
 }
 .card.is-hidden{
   display:none;
@@ -358,6 +454,7 @@ section.tight{padding-top:0;}
   color:var(--ink);
   border-bottom:1px solid var(--line);
   padding:10px 0;
+  position:relative;
   transition:color .15s var(--ease), border-color .15s var(--ease);
   display:flex;align-items:center;gap:10px;
 }
@@ -414,6 +511,8 @@ section.tight{padding-top:0;}
 @media (max-width: 860px){
   .wrap, .topbar-inner, .filterbar-inner{padding-left:20px;padding-right:20px;}
   section{padding:64px 0;}
+  .topbar-inner{display:flex;justify-content:space-between;}
+  .topbar-tagline{display:none;}
   .topnav{
     position:fixed;top:65px;left:0;right:0;
     background:var(--paper);
@@ -428,14 +527,30 @@ section.tight{padding-top:0;}
   .topnav a{display:block;padding:12px 0;border-bottom:1px solid var(--line);}
   .navtoggle{display:block;}
   .hero{padding:36px 0;}
+  .hero-sub-row{flex-direction:column;gap:20px;}
   .hero-stats{flex-wrap:wrap;}
   .hero-stat{flex:1 1 45%;margin-bottom:16px;}
-  .project-grid{grid-template-columns:1fr;}
+  .card-row{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-contact-col{display:block;}
   .about-resume-btn{margin-top:32px;transform:none;}
   #contact .eyebrow{transform:none;}
   .contact-row{flex-direction:column;align-items:flex-start;}
+  .work-head-row{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+  .work-head-row .sort-controls{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .work-head-row .sort-controls .sort-label{
+    position:static;
+    transform:none;
+  }
   .filter-count{width:100%;margin-left:0;order:-1;margin-bottom:4px;}
 }
 </style>
@@ -444,17 +559,20 @@ section.tight{padding-top:0;}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="#top" class="brandmark"><span class="dot"></span>PORTFOLIO</a>
-    <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <nav>
-      <ul class="topnav" id="topnav">
-        <li><a href="#work">Work</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <a href="#top" class="brandmark">EMILY S.M. PORTFOLIO</a>
+    <p class="topbar-tagline">Creative Design <em>&amp;</em> Communications</p>
+    <div class="topbar-nav-wrap">
+      <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav>
+        <ul class="topnav" id="topnav">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </div>
 </header>
 
@@ -464,34 +582,35 @@ section.tight{padding-top:0;}
   <section class="hero">
     <canvas class="hero-trail-canvas" id="heroTrailCanvas" aria-hidden="true"></canvas>
     <div class="wrap hero-inner">
-      <p class="eyebrow">Creative Design <em>&amp;</em> Communications — New York, NY</p>
       <h1>I work across <span class="role-slot" id="roleSlot">marketing</span><br>and everywhere in between.</h1>
-      <p class="hero-sub">I am an emerging multidisciplinary professional moving fluidly<br>between commercial polish and mission-driven&nbsp;storytelling.</p>
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="num">10</span><span class="lbl">Projects indexed</span></div>
-        <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
-        <div class="hero-stat"><span class="num">01</span><span class="lbl">Open to work</span></div>
+      <div class="hero-sub-row">
+        <p class="hero-sub"><span class="nowrap-line">I am an emerging multidisciplinary professional moving fluidly</span><br><span class="nowrap-line">between commercial polish and mission-driven storytelling.</span></p>
+        <div class="hero-stats">
+          <div class="hero-stat"><span class="num">10</span><span class="lbl">Projects indexed</span></div>
+          <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
+          <div class="hero-stat"><span class="num">01</span><span class="lbl">Open to work</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ WORK / INDEX ============ -->
   <section class="index-section tight" id="work">
-    <div class="wrap" style="padding-top:16px;">
-      <div class="section-head reveal" style="margin-bottom:8px;">
+    <div class="wrap" style="padding-top:24px;">
+      <div class="section-head work-head-row" style="margin-bottom:24px;">
         <h2>Selected work</h2>
+        <div class="sort-controls">
+          <span class="sort-label">Sort By:</span>
+          <div class="mode-toggle" role="tablist" aria-label="Filter mode">
+            <button class="mode-btn active" data-mode="discipline" role="tab" aria-selected="true">Discipline</button>
+            <button class="mode-btn" data-mode="industry" role="tab" aria-selected="false">Industry</button>
+          </div>
+        </div>
+        <span class="filter-count" id="filterCount">10 of 10 shown</span>
       </div>
     </div>
 
     <div class="filterbar">
-      <div class="filterbar-inner">
-        <span class="sort-label">Sort By:</span>
-        <div class="mode-toggle" role="tablist" aria-label="Filter mode">
-          <button class="mode-btn active" data-mode="discipline" role="tab" aria-selected="true">Discipline</button>
-          <button class="mode-btn" data-mode="industry" role="tab" aria-selected="false">Industry</button>
-        </div>
-        <span class="filter-count" id="filterCount">10 of 10 shown</span>
-      </div>
       <div class="filterbar-inner chip-row" id="disciplineChips">
         <button class="chip active" data-filter="all">All work</button>
         <button class="chip" data-filter="branding">Branding &amp; Marketing</button>
@@ -512,9 +631,10 @@ section.tight{padding-top:0;}
 
     <div class="wrap">
       <div class="project-grid" id="projectGrid">
+        <div class="card-row">
 
         <!-- 1 -->
-        <article class="card reveal" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Branding & Marketing" data-employment="Full-Time">
+        <article class="card" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Branding & Marketing" data-employment="Full-Time">
           <div class="card-top">
             <span class="card-index">01</span>
             <span class="card-index">May 2026 — Present</span>
@@ -538,7 +658,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 2 -->
-        <article class="card reveal" data-tags="content marketing" data-industry="hospitality" data-pill-discipline="Content, Copy, Comms" data-employment="Internship">
+        <article class="card" data-tags="content marketing" data-industry="hospitality" data-pill-discipline="Content, Copy, Comms" data-employment="Internship">
           <div class="card-top">
             <span class="card-index">02</span>
             <span class="card-index">Sept — Dec 2025</span>
@@ -562,6 +682,9 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
+        </div>
+
+        <div class="card-row">
 
         <!-- 3 -->
         <article class="card reveal" data-tags="editorial social uxui" data-industry="nonprofit tech" data-pill-discipline="Social Impact,Product & Interaction" data-employment="Academic">
@@ -613,6 +736,9 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
+        </div>
+
+        <div class="card-row">
 
         <!-- 5 -->
         <article class="card reveal" data-tags="illustration social" data-industry="nonprofit" data-pill-discipline="Social Impact" data-employment="Academic">
@@ -660,6 +786,9 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
+        </div>
+
+        <div class="card-row">
 
         <!-- 7 -->
         <article class="card reveal" data-tags="illustration" data-industry="other" data-pill-discipline="Artistic" data-employment="Contract">
@@ -710,6 +839,9 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
+        </div>
+
+        <div class="card-row">
 
         <!-- 9 -->
         <article class="card reveal" data-tags="uxui" data-industry="beauty" data-pill-discipline="Product & Interaction" data-employment="Internship">
@@ -762,6 +894,7 @@ section.tight{padding-top:0;}
             <span class="card-employment" data-employment-label></span>
           </div>
         </article>
+        </div>
 
       </div>
     </div>
@@ -914,6 +1047,15 @@ section.tight{padding-top:0;}
   var total = cards.length;
   var currentMode = 'discipline';
 
+  cards.forEach(function(card){
+    card.addEventListener('click', function(){
+      card.classList.add('card-active');
+      setTimeout(function(){
+        card.classList.remove('card-active');
+      }, 260);
+    });
+  });
+
   var chipRows = {
     discipline: document.getElementById('disciplineChips'),
     industry: document.getElementById('industryChips')
@@ -974,6 +1116,38 @@ section.tight{padding-top:0;}
   }
   renderPills();
 
+  var cardRows = document.querySelectorAll('.card-row');
+  var rowGlowTicking = false;
+
+  function updateRowGlows(){
+    if (!cardRows.length) return;
+    var vh = window.innerHeight;
+    cardRows.forEach(function(row){
+      var cardsInRow = row.querySelectorAll('.card:not(.is-hidden)');
+      var mostlyVisible = cardsInRow.length > 0 && Array.prototype.every.call(cardsInRow, function(c){
+        var r = c.getBoundingClientRect();
+        if (r.height <= 0) return false;
+        var visibleTop = Math.max(r.top, 0);
+        var visibleBottom = Math.min(r.bottom, vh);
+        var visibleHeight = Math.max(0, visibleBottom - visibleTop);
+        return (visibleHeight / r.height) >= 0.75;
+      });
+      row.classList.toggle('glow-active', mostlyVisible);
+    });
+    rowGlowTicking = false;
+  }
+
+  function onScrollOrResizeForGlow(){
+    if (!rowGlowTicking) {
+      requestAnimationFrame(updateRowGlows);
+      rowGlowTicking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScrollOrResizeForGlow, { passive: true });
+  window.addEventListener('resize', onScrollOrResizeForGlow);
+  updateRowGlows();
+
   function bindChipRow(row){
     if (!row) return;
     row.querySelectorAll('.chip').forEach(function(chip){
@@ -981,6 +1155,7 @@ section.tight{padding-top:0;}
         row.querySelectorAll('.chip').forEach(function(c){ c.classList.remove('active'); });
         chip.classList.add('active');
         applyFilter(chip.getAttribute('data-filter'));
+        updateRowGlows();
       });
     });
   }
@@ -1011,6 +1186,7 @@ section.tight{padding-top:0;}
       });
       applyFilter('all');
       renderPills();
+      updateRowGlows();
     });
   });
 
