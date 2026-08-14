@@ -955,13 +955,25 @@ section.tight{padding-top:0;}
   var roleSlot = document.getElementById('roleSlot');
   var idx = 0;
   roleSlot.style.transition = 'opacity .22s ease';
-  setInterval(function(){
-    idx = (idx + 1) % roles.length;
-    roleSlot.style.opacity = '0';
-    setTimeout(function(){
+  var roleSwapPending = false;
+  roleSlot.addEventListener('transitionend', function(e){
+    if (e.propertyName !== 'opacity' || !roleSwapPending) return;
+    if (roleSlot.style.opacity === '0') {
       roleSlot.textContent = roles[idx];
       roleSlot.style.opacity = '1';
-    }, 220);
+      roleSwapPending = false;
+    }
+  });
+  setInterval(function(){
+    idx = (idx + 1) % roles.length;
+    roleSwapPending = true;
+    roleSlot.style.opacity = '0';
+    setTimeout(function(){
+      if (!roleSwapPending) return;
+      roleSlot.textContent = roles[idx];
+      roleSlot.style.opacity = '1';
+      roleSwapPending = false;
+    }, 320);
   }, 1700);
 
   function initWordTrail(containerEl, canvasEl){
@@ -988,6 +1000,7 @@ section.tight{padding-top:0;}
       function spawn(x, y){
         pts.push({ x: x, y: y, word: roles[wi % roles.length], life: 1 });
         wi++;
+        ensureLoopRunning();
       }
 
       function maybeSpawn(x, y){
@@ -1019,6 +1032,8 @@ section.tight{padding-top:0;}
       ctx.font = "12px 'IBM Plex Mono', monospace";
       ctx.textBaseline = 'middle';
 
+      var looping = false;
+
       function draw(){
         ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
         for (var i = pts.length - 1; i >= 0; i--) {
@@ -1032,9 +1047,19 @@ section.tight{padding-top:0;}
           ctx.fillText(p.word, 0, 0);
           ctx.restore();
         }
-        requestAnimationFrame(draw);
+        if (pts.length > 0) {
+          requestAnimationFrame(draw);
+        } else {
+          looping = false;
+        }
       }
-      draw();
+
+      function ensureLoopRunning(){
+        if (!looping) {
+          looping = true;
+          requestAnimationFrame(draw);
+        }
+      }
   }
 
   initWordTrail(document.querySelector('.hero'), document.getElementById('heroTrailCanvas'));
