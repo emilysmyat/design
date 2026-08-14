@@ -96,12 +96,13 @@ h1,h2,h3{
   text-decoration:none;
   color:var(--ink-soft);
   position:relative;
+  transition:color .15s var(--ease);
 }
+.brandmark:hover{color:var(--red);}
 .topnav{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-family:'IBM Plex Mono', monospace;font-size:14px;}
 .topnav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent;position:relative;transition:color .15s var(--ease), border-color .15s var(--ease);}
 .topnav a:hover{color:var(--ink);border-color:var(--red);}
-.topnav a::before,
-.brandmark::before{
+.topnav a::before{
   content:'';
   position:absolute;
   inset:-9px;
@@ -111,15 +112,10 @@ h1,h2,h3{
   transition:opacity .3s var(--ease);
   pointer-events:none;
 }
-.topnav a::before,
-.brandmark::before{
+.topnav a::before{
   inset:-18px;
 }
-.brandmark::before{
-  background:radial-gradient(ellipse 65% 38% at center, rgba(30,63,224,0.27), transparent 80%);
-}
-.topnav a:hover::before,
-.brandmark:hover::before{
+.topnav a:hover::before{
   opacity:1;
 }
 .navtoggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;}
@@ -321,7 +317,7 @@ section.tight{padding-top:0;}
 .card:hover,
 .card.card-active{
   border-color:var(--red);
-  border-width:1.5px;
+  border-width:1.4px;
 }
 .card.is-hidden{
   display:none;
@@ -441,7 +437,7 @@ section.tight{padding-top:0;}
   background:var(--paper);
   color:var(--ink);
   border:1px solid var(--paper);
-  padding:14px 22px;
+  padding:11px 17px;
   border-radius:100px;
   text-decoration:none;
   white-space:nowrap;
@@ -462,7 +458,7 @@ section.tight{padding-top:0;}
   opacity:0.75;
   margin-top:auto;
   align-self:center;
-  transform:translateY(-18.5px);
+  transform:translateY(-20.5px);
   transition:border-color .15s var(--ease), opacity .15s var(--ease), box-shadow .15s var(--ease);
 }
 .about-resume-btn:hover{border-color:var(--ink-mid);opacity:1;box-shadow:0 0 6px 1px rgba(30,63,224,0.5);color:var(--ink);background:transparent;}
@@ -870,7 +866,7 @@ section.tight{padding-top:0;}
       <div class="about-grid reveal">
         <div class="about-bio">
           <p>I am an emerging multidisciplinary professional moving fluidly between commercial polish and mission-driven storytelling, and I move between disciplines on purpose. To me, design is less about mastering a single skill and more so a way of asking questions. Sometimes the answer is a system with rules and consistency. Sometimes it's a graphic that doesn't need any words at all.</p>
-          <p>I've never believed a career has to read like a straight line; most people don't think that way. Mine has zigzagged between commercial work and work that matters to me for reasons that have nothing to do with a resume. No matter what, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there?</p>
+          <p>I've never believed a career has to read like a straight line; most people don't think that way. My career has zigzagged between commercial work and projects that matter to me for reasons that have nothing to do with a resume. No matter what, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there?</p>
         </div>
         <div id="contact" class="about-contact-col">
           <p class="eyebrow">Currently <em>open</em> to opportunities</p>
