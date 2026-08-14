@@ -521,10 +521,10 @@ section.tight{padding-top:0;}
   .navtoggle{display:block;}
   .hero{padding:36px 0;}
   .hero-sub-row{flex-direction:column;gap:20px;}
-  .hero-stats{flex-wrap:nowrap;gap:10px;}
-  .hero-stat{flex:1;margin-bottom:0;min-width:0;}
+  .hero-stats{flex-wrap:nowrap;gap:14px;justify-content:flex-start;}
+  .hero-stat{flex:none;margin-bottom:0;min-width:0;}
   .hero-stat .num{font-size:16px;}
-  .hero-stat .lbl{font-size:9px;letter-spacing:.01em;}
+  .hero-stat .lbl{font-size:9px;letter-spacing:.01em;white-space:nowrap;}
   .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-contact-col{display:block;}
@@ -544,6 +544,7 @@ section.tight{padding-top:0;}
   .work-head-row .filter-count{
     grid-column:1;grid-row:2;
     width:auto;margin-left:0;margin-bottom:0;order:0;
+    justify-self:start;
   }
   .work-head-row .sort-controls{
     grid-column:2;grid-row:1 / span 2;
@@ -558,7 +559,13 @@ section.tight{padding-top:0;}
   .mode-toggle{padding:3px;}
   .mode-btn{font-size:10.5px;padding:3px 6px;}
   .chip{font-size:11px;padding:4px 6px;}
-  .filterbar-inner.chip-row{justify-content:flex-start;gap:6px;}
+  .filterbar-inner.chip-row{justify-content:space-between;gap:10px;row-gap:10px;}
+  #industryChips .chip[data-filter="all"]{order:1;}
+  #industryChips .chip[data-filter="hospitality"]{order:2;}
+  #industryChips .chip[data-filter="beauty"]{order:3;}
+  #industryChips .chip[data-filter="tech"]{order:4;}
+  #industryChips .chip[data-filter="nonprofit"]{order:5;}
+  #industryChips .chip[data-filter="other"]{order:6;}
 }
 </style>
 </head>
