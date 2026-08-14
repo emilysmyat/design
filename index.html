@@ -310,7 +310,7 @@ section.tight{padding-top:0;}
   filter:blur(20px);
   opacity:0;
   pointer-events:none;
-  transition:opacity 1s var(--ease);
+  transition:opacity 2s ease-in-out;
 }
 #aboutHeading.nav-pulse::before,
 #contactHeading.nav-pulse::before{
@@ -521,30 +521,44 @@ section.tight{padding-top:0;}
   .navtoggle{display:block;}
   .hero{padding:36px 0;}
   .hero-sub-row{flex-direction:column;gap:20px;}
-  .hero-stats{flex-wrap:wrap;}
-  .hero-stat{flex:1 1 45%;margin-bottom:16px;}
+  .hero-stats{flex-wrap:nowrap;gap:10px;}
+  .hero-stat{flex:1;margin-bottom:0;min-width:0;}
+  .hero-stat .num{font-size:16px;}
+  .hero-stat .lbl{font-size:9px;letter-spacing:.01em;}
   .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-contact-col{display:block;}
+  .about-contact-heading{margin-left:auto;margin-right:auto;}
   .about-resume-btn{margin-top:32px;transform:none;}
   #contact .eyebrow{transform:none;}
   .contact-row{flex-direction:column;align-items:flex-start;}
   .work-head-row{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-start;
-    gap:10px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    grid-template-rows:auto auto;
+    align-items:center;
+    column-gap:12px;
+    row-gap:4px;
+  }
+  .work-head-row h2{grid-column:1;grid-row:1;justify-self:start;}
+  .work-head-row .filter-count{
+    grid-column:1;grid-row:2;
+    width:auto;margin-left:0;margin-bottom:0;order:0;
   }
   .work-head-row .sort-controls{
+    grid-column:2;grid-row:1 / span 2;
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:8px;
   }
   .work-head-row .sort-controls .sort-label{
-    position:static;
-    transform:none;
+    display:none;
   }
-  .filter-count{width:100%;margin-left:0;order:-1;margin-bottom:4px;}
+  .work-head-row h2{font-size:15px;}
+  .mode-toggle{padding:3px;}
+  .mode-btn{font-size:10.5px;padding:3px 6px;}
+  .chip{font-size:11px;padding:4px 6px;}
+  .filterbar-inner.chip-row{justify-content:flex-start;gap:6px;}
 }
 </style>
 </head>
@@ -1028,7 +1042,7 @@ section.tight{padding-top:0;}
     clearTimeout(headingEl._pulseTimeout);
     headingEl._pulseTimeout = setTimeout(function(){
       headingEl.classList.remove('nav-pulse');
-    }, 1700);
+    }, 2700);
   }
 
   var aboutNavLink = document.querySelector('.topnav a[href="#about"]');
