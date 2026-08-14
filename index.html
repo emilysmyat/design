@@ -15,6 +15,7 @@
   --paper-2:#E9E6DC;
   --ink:#17181C;
   --ink-soft:#4B4C50;
+  --ink-mid:#9FA0A5;
   --ink-faint:#84837D;
   --active-fill:#A9AEB4;
   --red:#1E3FE0;
@@ -65,7 +66,7 @@ button{font-family:inherit;}
   text-transform:uppercase;
   color:var(--ink-faint);
 }
-#contact .eyebrow{transform:translateY(6px);}
+#contact .eyebrow{transform:translateY(6.5px);}
 .eyebrow em{font-style:normal;color:var(--red);}
 
 h1,h2,h3{
@@ -86,36 +87,21 @@ h1,h2,h3{
 .topbar-inner{
   padding:0 24px;
   height:64px;
-  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.topbar-tagline{
-  justify-self:center;
-  margin:0;
-  font-family:'IBM Plex Mono', monospace;
-  font-size:12px;
-  letter-spacing:.09em;
-  text-transform:uppercase;
-  color:var(--ink-faint);
-  white-space:nowrap;
-}
-.topbar-tagline em{font-style:normal;color:var(--red);}
-.topbar-nav-wrap{justify-self:end;display:flex;align-items:center;}
+.topbar-nav-wrap{display:flex;align-items:center;}
 .brandmark{
   font-family:'IBM Plex Mono', monospace;
-  font-weight:600;
   font-size:14px;
-  letter-spacing:.03em;
   text-decoration:none;
   color:var(--ink-soft);
   position:relative;
-  justify-self:start;
 }
 .topnav{display:flex;gap:28px;list-style:none;margin:0;padding:0;font-family:'IBM Plex Mono', monospace;font-size:14px;}
 .topnav a{text-decoration:none;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid transparent;position:relative;transition:color .15s var(--ease), border-color .15s var(--ease);}
 .topnav a:hover{color:var(--ink);border-color:var(--red);}
 .topnav a::before,
-.brandmark::before,
-.about-contact-links a::before{
+.brandmark::before{
   content:'';
   position:absolute;
   inset:-9px;
@@ -133,8 +119,7 @@ h1,h2,h3{
   background:radial-gradient(ellipse 65% 38% at center, rgba(30,63,224,0.27), transparent 80%);
 }
 .topnav a:hover::before,
-.brandmark:hover::before,
-.about-contact-links a:hover::before{
+.brandmark:hover::before{
   opacity:1;
 }
 .navtoggle{display:none;background:none;border:1px solid var(--line-strong);border-radius:var(--radius-sm);padding:8px 10px;cursor:pointer;}
@@ -142,7 +127,7 @@ h1,h2,h3{
 
 /* ============ HERO ============ */
 .hero{
-  padding:57px 0;
+  padding:57px 0 77px;
   position:relative;
   overflow:hidden;
   border-bottom:1px solid var(--line);
@@ -165,25 +150,15 @@ h1,h2,h3{
 .hero-sub-row{
   display:flex;
   align-items:flex-start;
-  justify-content:space-between;
+  justify-content:flex-start;
   gap:32px;
   margin-top:28px;
-}
-.hero-sub{
-  margin:0;
-  max-width:52ch;
-  font-size:20px;
-  color:var(--ink-soft);
-  flex:1;
-}
-.nowrap-line{white-space:nowrap;}
-@media (max-width:600px){
-  .nowrap-line{white-space:normal;}
 }
 .hero-stats{
   display:flex;
   gap:24px;
   flex:none;
+  transform:translateX(1px);
 }
 .hero-stat{
   flex:none;
@@ -246,24 +221,24 @@ section.tight{padding-top:0;}
 /* ============ FILTER BAR ============ */
 .index-section{border-bottom:1px solid var(--line);}
 #work{padding-bottom:56px;}
-#about{padding:56px 0;}
+#about{padding:56px 0;position:relative;overflow:hidden;}
 .filterbar{
   background:var(--paper);
   border-bottom:1px solid var(--line);
   margin-bottom:57px;
 }
 .filterbar-inner{
-  max-width:var(--maxw);margin:0 auto;padding:18px 32px;
+  max-width:1281px;margin:0 auto;padding:18px 32px;
   display:flex;gap:10px;flex-wrap:wrap;align-items:center;
 }
-.filterbar-inner.chip-row{padding-top:0;justify-content:space-between;gap:18px;}
+.filterbar-inner.chip-row{padding-top:0;padding-bottom:24px;justify-content:space-between;gap:18px;}
 .mode-toggle{
   display:inline-flex;
   border:1px solid var(--line-strong);
   border-radius:100px;
-  padding:3px;
+  padding:5px;
   gap:3px;
-  transition:border-color .15s var(--ease);
+  transition:border-color .15s var(--ease), box-shadow .15s var(--ease);
 }
 .mode-btn{
   font-family:'IBM Plex Mono', monospace;
@@ -272,14 +247,15 @@ section.tight{padding-top:0;}
   background:transparent;
   border:none;
   color:var(--ink-soft);
-  padding:7px 16px;
+  padding:4px 8px;
   border-radius:100px;
   cursor:pointer;
-  transition:background .15s var(--ease), color .15s var(--ease);
+  opacity:0.75;
+  transition:background .15s var(--ease), color .15s var(--ease), opacity .15s var(--ease);
 }
-.mode-toggle:hover{border-color:var(--ink);}
+.mode-toggle:hover{border-color:var(--ink-mid);box-shadow:0 0 6px 1px rgba(159,160,165,0.5);}
 .mode-toggle:hover .mode-btn:not(.active){color:var(--ink);}
-.mode-btn.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);color:var(--ink);border:1px solid var(--ink);}
+.mode-btn.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);color:var(--ink);border:1px solid var(--ink);opacity:1;}
 .sort-label{
   font-family:'IBM Plex Mono', monospace;
   font-size:14px;
@@ -304,11 +280,12 @@ section.tight{padding-top:0;}
   padding:5px 8px;
   border-radius:var(--radius-md);
   cursor:pointer;
-  transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease);
+  opacity:0.75;
+  transition:background .15s var(--ease), color .15s var(--ease), border-color .15s var(--ease), opacity .15s var(--ease);
   white-space:nowrap;
 }
 .chip:hover{border-color:var(--ink);color:var(--ink);}
-.chip.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);border-color:var(--ink);color:var(--ink);}
+.chip.active{background:radial-gradient(ellipse 130% 130% at center, #FAFAF9 0%, var(--active-fill) 100%);border-color:var(--ink);color:var(--ink);opacity:1;}
 
 /* ============ PROJECT GRID ============ */
 .project-grid{
@@ -321,7 +298,7 @@ section.tight{padding-top:0;}
   position:absolute;
   pointer-events:none;
   z-index:0;
-  background:radial-gradient(ellipse at center, rgba(30,63,224,0.16), transparent 70%);
+  background:radial-gradient(ellipse at center, rgba(30,63,224,0.168), transparent 70%);
   filter:blur(24px);
   opacity:0;
   transition:opacity .6s var(--ease);
@@ -344,7 +321,7 @@ section.tight{padding-top:0;}
 .card:hover,
 .card.card-active{
   border-color:var(--red);
-  border-width:1.25px;
+  border-width:1.5px;
 }
 .card.is-hidden{
   display:none;
@@ -402,11 +379,12 @@ section.tight{padding-top:0;}
 /* ============ ABOUT ============ */
 .about-grid{
   display:grid;
-  grid-template-columns:1.1fr 1fr;
+  grid-template-columns:1fr 1fr;
   gap:72px;
   align-items:stretch;
 }
-.about-bio p{font-size:18px;color:var(--ink-soft);max-width:58ch;}
+.about-bio p{font-size:18px;color:var(--ink-soft);max-width:585px;}
+.about-bio p:nth-of-type(2){max-width:408px;}
 .about-bio p + p{margin-top:18px;}
 .skill-block + .skill-block{margin-top:32px;}
 .skill-block h4{
@@ -435,20 +413,27 @@ section.tight{padding-top:0;}
   max-width:20ch;
   margin:14px 0 28px;
 }
-.about-contact-links{display:flex;flex-direction:column;gap:2px;margin-bottom:6px;}
+.about-contact-links{display:flex;flex-direction:column;align-items:center;gap:32px;margin-bottom:6px;margin-top:12px;}
 .about-contact-links a{
   font-family:'Archivo Expanded', sans-serif;
   font-weight:700;
   font-size:19px;
   text-decoration:none;
   color:var(--ink);
-  border-bottom:1px solid var(--line);
-  padding:10px 0;
+  padding-top:10px;
   position:relative;
-  transition:color .15s var(--ease), border-color .15s var(--ease);
-  display:flex;align-items:center;gap:10px;
+  transition:color .15s var(--ease);
+  display:inline-flex;align-items:center;gap:10px;
+  width:fit-content;
 }
-.about-contact-links a:hover{color:var(--red);border-color:var(--red);}
+.about-contact-links a .link-text{
+  border-bottom:1px solid var(--line);
+  padding-bottom:10px;
+  padding-right:1.5px;
+  transition:border-color .15s var(--ease);
+}
+.about-contact-links a:hover{color:var(--red);}
+.about-contact-links a:hover .link-text{border-color:var(--red);}
 .about-contact-links a .arrow{font-family:'IBM Plex Mono', monospace;font-size:15px;}
 .resume-btn{
   font-family:'IBM Plex Mono', monospace;
@@ -468,16 +453,20 @@ section.tight{padding-top:0;}
 .about-contact-col{
   display:flex;
   flex-direction:column;
+  align-items:center;
+  text-align:center;
 }
 .about-resume-btn{
-  background:var(--ink);
-  color:var(--paper);
-  border:1px solid var(--ink);
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--line-strong);
+  opacity:0.75;
   margin-top:auto;
-  align-self:flex-start;
-  transform:translateY(-18px);
+  align-self:center;
+  transform:translateY(-18.5px);
+  transition:border-color .15s var(--ease), opacity .15s var(--ease), box-shadow .15s var(--ease);
 }
-.about-resume-btn:hover{background:transparent;color:var(--ink);}
+.about-resume-btn:hover{border-color:var(--ink-mid);opacity:1;box-shadow:0 0 6px 1px rgba(30,63,224,0.5);color:var(--ink);background:transparent;}
 
 .site-foot{
   border-top:1px solid var(--line);
@@ -487,8 +476,8 @@ section.tight{padding-top:0;}
   display:flex;
   justify-content:space-between;
   font-family:'IBM Plex Mono', monospace;
-  font-size:12px;
-  color:var(--red);
+  font-size:14px;
+  color:var(--ink-soft);
   flex-wrap:wrap;
   gap:10px;
 }
@@ -502,7 +491,6 @@ section.tight{padding-top:0;}
   .wrap, .topbar-inner, .filterbar-inner{padding-left:20px;padding-right:20px;}
   section{padding:64px 0;}
   .topbar-inner{display:flex;justify-content:space-between;}
-  .topbar-tagline{display:none;}
   .topnav{
     position:fixed;top:65px;left:0;right:0;
     background:var(--paper);
@@ -549,15 +537,13 @@ section.tight{padding-top:0;}
 
 <header class="topbar">
   <div class="topbar-inner">
-    <a href="#top" class="brandmark">EMILY S.M. PORTFOLIO</a>
-    <p class="topbar-tagline">Creative Design <em>&amp;</em> Communications</p>
+    <a href="#top" class="brandmark">Emily S.M. Portfolio</a>
     <div class="topbar-nav-wrap">
       <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
       <nav>
         <ul class="topnav" id="topnav">
-          <li><a href="#work">Work</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -574,7 +560,6 @@ section.tight{padding-top:0;}
     <div class="wrap hero-inner">
       <h1>I work across <span class="role-slot" id="roleSlot">marketing</span><br>and everywhere in between.</h1>
       <div class="hero-sub-row">
-        <p class="hero-sub"><span class="nowrap-line">I am an emerging multidisciplinary professional moving fluidly</span><br><span class="nowrap-line">between commercial polish and mission-driven storytelling.</span></p>
         <div class="hero-stats">
           <div class="hero-stat"><span class="num">10</span><span class="lbl">Projects indexed</span></div>
           <div class="hero-stat"><span class="num">5+</span><span class="lbl">Industries served</span></div>
@@ -586,7 +571,7 @@ section.tight{padding-top:0;}
 
   <!-- ============ WORK / INDEX ============ -->
   <section class="index-section tight" id="work">
-    <div class="wrap" style="padding-top:24px;">
+    <div class="wrap" style="padding-top:24px;max-width:1281px;">
       <div class="section-head work-head-row" style="margin-bottom:24px;">
         <h2>Selected work</h2>
         <div class="sort-controls">
@@ -605,9 +590,9 @@ section.tight{padding-top:0;}
         <button class="chip active" data-filter="all">All work</button>
         <button class="chip" data-filter="marketing">Marketing</button>
         <button class="chip" data-filter="content">Content, Copy, Comms</button>
-        <button class="chip" data-filter="uxui">Product &amp; Interaction</button>
+        <button class="chip" data-filter="uxui">Product Design</button>
         <button class="chip" data-filter="social">Social Impact</button>
-        <button class="chip" data-filter="motion">Art</button>
+        <button class="chip" data-filter="motion">Creative</button>
       </div>
       <div class="filterbar-inner chip-row" id="industryChips" hidden>
         <button class="chip active" data-filter="all">All work</button>
@@ -615,11 +600,11 @@ section.tight{padding-top:0;}
         <button class="chip" data-filter="tech">Technology</button>
         <button class="chip" data-filter="beauty">Beauty &amp; Fashion</button>
         <button class="chip" data-filter="nonprofit">Nonprofit</button>
-        <button class="chip" data-filter="other">Creative Arts</button>
+        <button class="chip" data-filter="other">Graphic Design</button>
       </div>
     </div>
 
-    <div class="wrap">
+    <div class="wrap" style="max-width:1373px;">
       <div class="project-grid" id="projectGrid">
 
         <!-- 1 -->
@@ -748,7 +733,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 6 -->
-        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Art" data-employment="Fellowship">
+        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Creative" data-employment="Fellowship">
           <div class="card-top">
             <span class="card-index">06</span>
             <span class="card-index">Nov 2024</span>
@@ -771,7 +756,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 7 -->
-        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Art" data-employment="Contract">
+        <article class="card reveal" data-tags="illustration motion" data-industry="other" data-pill-discipline="Creative" data-employment="Contract">
           <div class="card-top">
             <span class="card-index">07</span>
             <span class="card-index">June 2022 — June 2025</span>
@@ -846,7 +831,7 @@ section.tight{padding-top:0;}
         </article>
 
         <!-- 10 -->
-        <article class="card reveal" data-tags="motion" data-industry="other" data-pill-discipline="Art" data-employment="Academic">
+        <article class="card reveal" data-tags="motion" data-industry="other" data-pill-discipline="Creative" data-employment="Academic">
           <div class="card-top">
             <span class="card-index">10</span>
             <span class="card-index">March 2025 — Dec 2025</span>
@@ -878,22 +863,22 @@ section.tight{padding-top:0;}
 
   <!-- ============ ABOUT ============ -->
   <section id="about">
-    <div class="wrap">
+    <canvas class="hero-trail-canvas" id="aboutTrailCanvas" aria-hidden="true"></canvas>
+    <div class="wrap" style="max-width:1329px;">
       <div class="section-head reveal" style="margin-bottom:20px;">
         <h2>About</h2>
       </div>
       <div class="about-grid reveal">
         <div class="about-bio">
-          <p>I move between disciplines on purpose. To me, design is less about mastering a single skill and more so a way of asking questions — what does this need to say, who needs to hear it, and what's getting in the way of that? Sometimes the answer is a system with rules and consistency. Sometimes it's a single image that doesn't need any words at all.</p>
-          <p>That range is the point, not a scatter of side projects. I've never believed a career has to read like a straight line; most people's actual thinking doesn't work that way. Mine has zigzagged between commercial work and work that matters to me for reasons that have nothing to do with a resume. No matter what, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there?</p>
+          <p>I am an emerging multidisciplinary professional moving fluidly between commercial polish and mission-driven storytelling, and I move between disciplines on purpose. To me, design is less about mastering a single skill and more so a way of asking questions. Sometimes the answer is a system with rules and consistency. Sometimes it's a graphic that doesn't need any words at all.</p>
+          <p>I've never believed a career has to read like a straight line; most people don't think that way. Mine has zigzagged between commercial work and work that matters to me for reasons that have nothing to do with a resume. No matter what, I start from the same place: who is this for, what do they need to understand, and what's the clearest way to get them there?</p>
         </div>
         <div id="contact" class="about-contact-col">
           <p class="eyebrow">Currently <em>open</em> to opportunities</p>
           <h3 class="about-contact-heading">Let's work together.</h3>
           <div class="about-contact-links">
-            <a href="mailto:emilysmyat@outlook.com"><span class="arrow">→</span> emilysmyat@outlook.com</a>
-            <a href="https://linkedin.com/in/emilysmyat" target="_blank" rel="noopener"><span class="arrow">→</span> LinkedIn</a>
-            <a href="https://yourname.com" target="_blank" rel="noopener"><span class="arrow">→</span> Instagram</a>
+            <a href="mailto:emilysmyat@outlook.com"><span class="arrow">→</span> <span class="link-text">emilysmyat@outlook.com</span></a>
+            <a href="https://linkedin.com/in/emilysmyat" target="_blank" rel="noopener"><span class="arrow">→</span> <span class="link-text">connect on LinkedIn</span></a>
           </div>
           <a href="#" class="resume-btn about-resume-btn">Download resume ↓</a>
         </div>
@@ -903,7 +888,7 @@ section.tight{padding-top:0;}
 
   <!-- ============ FOOTER ============ -->
   <footer class="site-foot">
-    <div class="wrap foot">
+    <div class="foot" style="padding-left:24px;padding-right:24px;">
       <span>© <span id="year"></span> — Portfolio Index</span>
       <span>Designed &amp; built as a living document</span>
     </div>
@@ -943,19 +928,17 @@ section.tight{padding-top:0;}
     }, 220);
   }, 1700);
 
-  (function(){
-      var heroEl = document.querySelector('.hero');
-      var canvas = document.getElementById('heroTrailCanvas');
-      if (!heroEl || !canvas) return;
-      var ctx = canvas.getContext('2d');
+  function initWordTrail(containerEl, canvasEl){
+      if (!containerEl || !canvasEl) return;
+      var ctx = canvasEl.getContext('2d');
       var dpr = window.devicePixelRatio || 1;
 
       function resizeCanvas(){
-        var w = heroEl.clientWidth, h = heroEl.clientHeight;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
+        var w = containerEl.clientWidth, h = containerEl.clientHeight;
+        canvasEl.width = w * dpr;
+        canvasEl.height = h * dpr;
+        canvasEl.style.width = w + 'px';
+        canvasEl.style.height = h + 'px';
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       }
       resizeCanvas();
@@ -989,11 +972,11 @@ section.tight{padding-top:0;}
         }
       }
 
-      heroEl.addEventListener('mousemove', function(e){
-        var r = heroEl.getBoundingClientRect();
+      containerEl.addEventListener('mousemove', function(e){
+        var r = containerEl.getBoundingClientRect();
         maybeSpawn(e.clientX - r.left, e.clientY - r.top);
       });
-      heroEl.addEventListener('mouseleave', function(){
+      containerEl.addEventListener('mouseleave', function(){
         lastX = null; lastY = null;
       });
 
@@ -1001,7 +984,7 @@ section.tight{padding-top:0;}
       ctx.textBaseline = 'middle';
 
       function draw(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
         for (var i = pts.length - 1; i >= 0; i--) {
           var p = pts[i];
           p.life -= 0.012;
@@ -1016,7 +999,10 @@ section.tight{padding-top:0;}
         requestAnimationFrame(draw);
       }
       draw();
-    })();
+  }
+
+  initWordTrail(document.querySelector('.hero'), document.getElementById('heroTrailCanvas'));
+  initWordTrail(document.getElementById('about'), document.getElementById('aboutTrailCanvas'));
 
   var cards = document.querySelectorAll('.card');
   var countEl = document.getElementById('filterCount');
@@ -1055,7 +1041,7 @@ section.tight{padding-top:0;}
     tech: 'Technology',
     beauty: 'Beauty & Fashion',
     nonprofit: 'Nonprofit',
-    other: 'Creative Arts'
+    other: 'Graphic Design'
   };
 
   function renderPills(){
