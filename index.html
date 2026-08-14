@@ -142,6 +142,9 @@ h1,h2,h3{
   color:var(--red);
   display:inline-block;
   min-width:1ch;
+  will-change:opacity;
+  transform:translateZ(0);
+  backface-visibility:hidden;
 }
 .hero-sub-row{
   display:flex;
@@ -1031,7 +1034,7 @@ section.tight{padding-top:0;}
         lastX = null; lastY = null;
       });
 
-      ctx.font = "12px 'IBM Plex Mono', monospace";
+      ctx.font = "12px ui-monospace, Menlo, Consolas, monospace";
       ctx.textBaseline = 'middle';
 
       var looping = false;
@@ -1302,7 +1305,5 @@ section.tight{padding-top:0;}
 })();
 </script>
 
-</body>
-</html>
 </body>
 </html>
