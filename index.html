@@ -297,9 +297,8 @@ section.tight{padding-top:0;}
   background:radial-gradient(ellipse at center, rgba(30,63,224,0.1764), transparent 70%);
   filter:blur(24px);
   opacity:0;
-  transition:opacity 1.4s var(--ease);
+  transition:opacity .08s linear;
 }
-.row-glow-el.glow-active{opacity:1;}
 .card{
   background:var(--card-bg);
   padding:32px;
@@ -1092,6 +1091,15 @@ section.tight{padding-top:0;}
     return glowPool[i];
   }
 
+  function visibleFraction(el, vh){
+    var r = el.getBoundingClientRect();
+    if (r.height <= 0) return 0;
+    var visibleTop = Math.max(r.top, 0);
+    var visibleBottom = Math.min(r.bottom, vh);
+    var visibleHeight = Math.max(0, visibleBottom - visibleTop);
+    return visibleHeight / r.height;
+  }
+
   function updateRowGlows(){
     if (!projectGrid) return;
     var vh = window.innerHeight;
@@ -1118,19 +1126,20 @@ section.tight{padding-top:0;}
       glowEl.style.width = (right - left + pad * 2) + 'px';
       glowEl.style.height = (bottom - top + pad * 2) + 'px';
 
-      var mostlyVisible = pair.length > 0 && rects.every(function(r){
-        if (r.height <= 0) return false;
-        var visibleTop = Math.max(r.top, 0);
-        var visibleBottom = Math.min(r.bottom, vh);
-        var visibleHeight = Math.max(0, visibleBottom - visibleTop);
-        return (visibleHeight / r.height) >= 0.75;
-      });
-      glowEl.classList.toggle('glow-active', mostlyVisible);
+      var images = pair.map(function(c){ return c.querySelector('.card-art') || c; });
+      var fractions = images.map(function(img){ return visibleFraction(img, vh); });
+      var minFraction = fractions.length ? Math.min.apply(null, fractions) : 0;
+
+      var fadeStart = 0.15, fadeEnd = 0.35;
+      var t = (minFraction - fadeStart) / (fadeEnd - fadeStart);
+      t = Math.max(0, Math.min(1, t));
+
+      glowEl.style.opacity = t;
       glowEl.style.display = '';
     }
     for (var j = pairCount; j < glowPool.length; j++) {
       glowPool[j].style.display = 'none';
-      glowPool[j].classList.remove('glow-active');
+      glowPool[j].style.opacity = 0;
     }
     rowGlowTicking = false;
   }
