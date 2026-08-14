@@ -299,6 +299,23 @@ section.tight{padding-top:0;}
   opacity:0;
   transition:opacity .08s linear;
 }
+#aboutHeading,
+#contactHeading{position:relative;}
+#aboutHeading::before,
+#contactHeading::before{
+  content:'';
+  position:absolute;
+  inset:-20px -32px;
+  background:radial-gradient(ellipse at center, rgba(30,63,224,0.32), transparent 70%);
+  filter:blur(20px);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity 1s var(--ease);
+}
+#aboutHeading.nav-pulse::before,
+#contactHeading.nav-pulse::before{
+  opacity:1;
+}
 .card{
   background:var(--card-bg);
   padding:32px;
@@ -864,7 +881,7 @@ section.tight{padding-top:0;}
     <canvas class="hero-trail-canvas" id="aboutTrailCanvas" aria-hidden="true"></canvas>
     <div class="wrap" style="max-width:1329px;">
       <div class="section-head reveal" style="margin-bottom:20px;">
-        <h2>About</h2>
+        <h2 id="aboutHeading">About</h2>
       </div>
       <div class="about-grid reveal">
         <div class="about-bio">
@@ -873,7 +890,7 @@ section.tight{padding-top:0;}
         </div>
         <div id="contact" class="about-contact-col">
           <p class="eyebrow">Currently <em>open</em> to opportunities</p>
-          <h3 class="about-contact-heading">Let's work together.</h3>
+          <h3 class="about-contact-heading" id="contactHeading">Let's work together.</h3>
           <div class="about-contact-links">
             <a href="mailto:emilysmyat@outlook.com"><span class="arrow">→</span> <span class="link-text">emilysmyat@outlook.com</span></a>
             <a href="https://linkedin.com/in/emilysmyat" target="_blank" rel="noopener"><span class="arrow">→</span> <span class="link-text">connect on LinkedIn</span></a>
@@ -1001,6 +1018,32 @@ section.tight{padding-top:0;}
 
   initWordTrail(document.querySelector('.hero'), document.getElementById('heroTrailCanvas'));
   initWordTrail(document.getElementById('about'), document.getElementById('aboutTrailCanvas'));
+
+  function pulseHeadingGlow(headingEl){
+    if (!headingEl) return;
+    headingEl.classList.remove('nav-pulse');
+    // force reflow so re-adding the class retriggers the transition if clicked again quickly
+    void headingEl.offsetWidth;
+    headingEl.classList.add('nav-pulse');
+    clearTimeout(headingEl._pulseTimeout);
+    headingEl._pulseTimeout = setTimeout(function(){
+      headingEl.classList.remove('nav-pulse');
+    }, 1700);
+  }
+
+  var aboutNavLink = document.querySelector('.topnav a[href="#about"]');
+  var contactNavLink = document.querySelector('.topnav a[href="#contact"]');
+  if (aboutNavLink) {
+    aboutNavLink.addEventListener('click', function(){
+      pulseHeadingGlow(document.getElementById('aboutHeading'));
+    });
+  }
+  if (contactNavLink) {
+    contactNavLink.addEventListener('click', function(){
+      pulseHeadingGlow(document.getElementById('contactHeading'));
+    });
+  }
+
 
 
   var cards = document.querySelectorAll('.card');
