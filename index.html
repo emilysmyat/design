@@ -954,27 +954,29 @@ section.tight{padding-top:0;}
   var roles = ['marketing', 'branding', 'social impact', 'product design', 'editorial', 'illustration'];
   var roleSlot = document.getElementById('roleSlot');
   var idx = 0;
-  roleSlot.style.transition = 'opacity .22s ease';
-  var roleSwapPending = false;
-  roleSlot.addEventListener('transitionend', function(e){
-    if (e.propertyName !== 'opacity' || !roleSwapPending) return;
-    if (roleSlot.style.opacity === '0') {
-      roleSlot.textContent = roles[idx];
-      roleSlot.style.opacity = '1';
-      roleSwapPending = false;
-    }
-  });
-  setInterval(function(){
+
+  function rotateRole(){
     idx = (idx + 1) % roles.length;
-    roleSwapPending = true;
-    roleSlot.style.opacity = '0';
-    setTimeout(function(){
-      if (!roleSwapPending) return;
+    var fadeOut = roleSlot.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 220, easing: 'ease', fill: 'forwards' }
+    );
+    var swapped = false;
+    function doSwap(){
+      if (swapped) return;
+      swapped = true;
       roleSlot.textContent = roles[idx];
-      roleSlot.style.opacity = '1';
-      roleSwapPending = false;
-    }, 320);
-  }, 1700);
+      roleSlot.animate(
+        [{ opacity: 0 }, { opacity: 1 }],
+        { duration: 220, easing: 'ease', fill: 'forwards' }
+      );
+    }
+    if (fadeOut.finished && typeof fadeOut.finished.then === 'function') {
+      fadeOut.finished.then(doSwap).catch(doSwap);
+    }
+    setTimeout(doSwap, 260);
+  }
+  setInterval(rotateRole, 1700);
 
   function initWordTrail(containerEl, canvasEl){
       if (!containerEl || !canvasEl) return;
@@ -1036,17 +1038,15 @@ section.tight{padding-top:0;}
 
       function draw(){
         ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+        ctx.fillStyle = '#1E3FE0';
         for (var i = pts.length - 1; i >= 0; i--) {
           var p = pts[i];
           p.life -= 0.012;
           if (p.life <= 0) { pts.splice(i, 1); continue; }
-          ctx.save();
           ctx.globalAlpha = Math.min(0.4, p.life * 0.44);
-          ctx.fillStyle = '#1E3FE0';
-          ctx.translate(p.x, p.y - (1 - p.life) * 16);
-          ctx.fillText(p.word, 0, 0);
-          ctx.restore();
+          ctx.fillText(p.word, p.x, p.y - (1 - p.life) * 16);
         }
+        ctx.globalAlpha = 1;
         if (pts.length > 0) {
           requestAnimationFrame(draw);
         } else {
@@ -1302,5 +1302,7 @@ section.tight{padding-top:0;}
 })();
 </script>
 
+</body>
+</html>
 </body>
 </html>
