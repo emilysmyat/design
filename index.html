@@ -512,11 +512,13 @@ section.tight{padding-top:0;}
   section{padding:64px 0;}
   .topbar-inner{display:flex;justify-content:space-between;}
   .topnav{
-    position:fixed;top:65px;left:0;right:0;
+    position:fixed;top:56px;right:20px;left:auto;
     background:var(--paper);
-    border-bottom:1px solid var(--line);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius-sm);
     flex-direction:column;gap:0;
-    padding:8px 20px 18px;
+    padding:4px 16px;
+    min-width:120px;
     transform:translateY(-8px);
     opacity:0;pointer-events:none;
     transition:opacity .18s var(--ease), transform .18s var(--ease);
@@ -542,16 +544,7 @@ section.tight{padding-top:0;}
   .hero-stat .lbl{font-size:9px;letter-spacing:.01em;white-space:nowrap;}
   .brandmark{font-size:9px;}
   .foot{font-size:9px;}
-  .project-grid{grid-template-columns:1fr 1fr;gap:10px;}
-  .card{padding:12px;gap:8px;}
-  .card-top{gap:6px;}
-  .card-index{font-size:8px;}
-  .card h3{font-size:12px;line-height:1.25;}
-  .card-role{font-size:8px;}
-  .desc{display:none;}
-  .card-art{aspect-ratio:4/3;}
-  .card-employment{font-size:8px;}
-  .tag{font-size:8px;}
+  .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-contact-col{display:block;}
   .about-contact-heading{margin-left:auto;margin-right:auto;}
@@ -688,7 +681,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">Canopy by Hilton — Marketing Collateral</span><span class="mb-only">Canopy by Hilton</span></h3>
           <p class="card-role"><span class="dt-only">Marketing &amp; Sales Administrator · Marketing &amp; Brand Design</span><span class="mb-only">Marketing &amp; Sales Administrator</span></p>
-          <p class="desc"><span class="dt-only">Redesigned event flyers and in-house restaurant menus for Canopy by Hilton, translating the hotel's new brand identity into assets that support the sales process.</span><span class="mb-only">Redesigned event flyers and menus for Canopy by Hilton's new brand identity.</span></p>
+          <p class="desc">Redesigned event flyers and in-house restaurant menus for Canopy by Hilton, translating the hotel's new brand identity into assets that support the sales process.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -714,7 +707,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">AFC — Press Kits &amp; E-Newsletters</span><span class="mb-only">Advanced Fresh Concepts</span></h3>
           <p class="card-role"><span class="dt-only">Digital Media Intern · Email &amp; Editorial Design</span><span class="mb-only">Digital Media Intern</span></p>
-          <p class="desc"><span class="dt-only">Designed monthly e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing editorial readability with brand-consistent visual structure.</span><span class="mb-only">Designed monthly e-newsletter templates and press kits for Advanced Fresh Concepts.</span></p>
+          <p class="desc">Designed monthly e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing editorial readability with brand-consistent visual structure.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -739,7 +732,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">CUNY Senior Thesis — Interactive Web Design</span><span class="mb-only">CUNY — Interactive Web Design</span></h3>
           <p class="card-role"><span class="dt-only">Independent Study · The World's Longest Ongoing Civil War</span><span class="mb-only">World's Longest Ongoing Civil War</span></p>
-          <p class="desc"><span class="dt-only">An independently researched senior thesis presented as an interactive website, combining information-forward interface with critical analysis of a humanitarian crisis.</span><span class="mb-only">An independently researched thesis presented as an interactive website.</span></p>
+          <p class="desc">An independently researched senior thesis presented as an interactive website, combining information-forward interface with critical analysis of a humanitarian crisis.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -765,7 +758,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">Ubiq — Heatmap &amp; Image Carousel Features</span><span class="mb-only">Ubiq — Spatial Media App</span></h3>
           <p class="card-role"><span class="dt-only">Design &amp; Product Lab Intern · UX/UI and Product Design</span><span class="mb-only">UX/UI Design &amp; Product Lab Intern</span></p>
-          <p class="desc"><span class="dt-only">Wireframed and prototyped new product features in Figma for Ubiq, an immersive 3D social platform, and contributed research within the product lab to shape UX/UI.</span><span class="mb-only">Wireframed and prototyped new product features in Figma for Ubiq.</span></p>
+          <p class="desc">Wireframed and prototyped new product features in Figma for Ubiq, an immersive 3D social platform, and contributed research within the product lab to shape UX/UI.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -789,7 +782,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">CUNY Publication — Mixed Media Political Posters</span><span class="mb-only">CUNY — Political Posters</span></h3>
           <p class="card-role"><span class="dt-only">Student Designer · Asian American Voices Journal, Volume 7</span><span class="mb-only">Asian American Voices Journal</span></p>
-          <p class="desc"><span class="dt-only">Created political poster artwork published in CUNY's Asian American Voices Journal, using bold graphic language to give visual form to political commentary.</span><span class="mb-only">Created political poster artwork published in CUNY's Asian American Voices Journal Volume 7.</span></p>
+          <p class="desc"><span class="dt-only">Created political poster artwork published in CUNY's Asian American Voices Journal, using bold graphic language to give visual form to political commentary.</span><span class="mb-only">Created political poster artwork published in CUNY's Asian American Voices Journal Volume 7, using bold graphic language to give visual form to political commentary.</span></p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -812,7 +805,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">NYC Publication — Maximalist Digital Posters</span><span class="mb-only">Art Fellow — Digital Posters</span></h3>
           <p class="card-role"><span class="dt-only">Art Fellow · NYC Fellows Collective, Cohort 4</span><span class="mb-only">NYC Fellows Collective, Cohort 4</span></p>
-          <p class="desc"><span class="dt-only">Eccentric digital posters centered around processing difficult human emotions, for NYC Fellows Collective, Fellows for Two: Cohort 4 — Where We Came From.</span><span class="mb-only">Eccentric digital posters exploring difficult human emotions, for NYC Fellows Collective.</span></p>
+          <p class="desc"><span class="dt-only">Eccentric digital posters centered around processing difficult human emotions, for NYC Fellows Collective, Fellows for Two: Cohort 4 — Where We Came From.</span><span class="mb-only">Eccentric digital posters centered around processing difficult human emotions, for NYC Fellows Collective, Fellows for Two: Where We Came From.</span></p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -836,7 +829,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">Insane Ink — Graphic Design &amp; Illustration</span><span class="mb-only">Insane Ink — Contract Artist</span></h3>
           <p class="card-role"><span class="dt-only">Contract Artist · Graphic Design &amp; Illustration</span><span class="mb-only">Graphic Design &amp; Illustration</span></p>
-          <p class="desc"><span class="dt-only">Provided freelance graphic design and illustration services for clients, including apparel graphics, branded merch, posters, and flyers, through a NYC based studio.</span><span class="mb-only">Provided freelance graphic design and illustration services through a NYC based studio.</span></p>
+          <p class="desc">Provided freelance graphic design and illustration services for clients, including apparel graphics, branded merch, posters, and flyers, through a NYC based studio.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -862,7 +855,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">Beauty Strike — Email, SMS, Social Media</span><span class="mb-only">Email, SMS, Social Media</span></h3>
           <p class="card-role"><span class="dt-only">Digital Creative Assistant · Digital Marketing</span><span class="mb-only">Creative/Digital Marketing Assistant</span></p>
-          <p class="desc"><span class="dt-only">Designed visual assets that align with brand identity including email templates, SMS campaigns, and social media content, for a NYC based beauty and wellness brand.</span><span class="mb-only">Designed email, SMS, and social content for Beauty Strike, a NYC wellness brand.</span></p>
+          <p class="desc"><span class="dt-only">Designed visual assets that align with brand identity including email templates, SMS campaigns, and social media content, for a NYC based beauty and wellness brand.</span><span class="mb-only">Designed visual assets that align with brand identity including email templates, SMS campaigns, and social media content, for Beauty Strike, a NYC based wellness brand.</span></p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -887,7 +880,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">Karbon Footprint — Tech Pack &amp; Prototype</span><span class="mb-only">Tech Pack &amp; Prototype</span></h3>
           <p class="card-role"><span class="dt-only">Product Lab Intern · Product Design</span><span class="mb-only">Product Design Intern</span></p>
-          <p class="desc"><span class="dt-only">Developed purse design mockups and a full tech pack, for an emerging environmentally conscious fashion brand centered around sustainability.</span><span class="mb-only">Developed purse design mockups and a tech pack for Karbon Footprint.</span></p>
+          <p class="desc"><span class="dt-only">Developed purse design mockups and a full tech pack, for an emerging environmentally conscious fashion brand centered around sustainability.</span><span class="mb-only">Developed purse design mockups and a full tech pack, for Karbon Footprint, an emerging fashion brand centered around sustainability.</span></p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -914,7 +907,7 @@ section.tight{padding-top:0;}
           </div>
           <h3><span class="dt-only">CUNY Queens — Animation, Motion, Video</span><span class="mb-only">Animation, Motion, Video</span></h3>
           <p class="card-role">Student · College Coursework</p>
-          <p class="desc"><span class="dt-only">A body of top-graded coursework completed at Queens College, spanning motion graphics, frame-by-frame animation, and short-form video editing.</span><span class="mb-only">Top-graded coursework spanning motion graphics and frame-by-frame animation.</span></p>
+          <p class="desc">A body of top-graded coursework completed at Queens College, spanning motion graphics, frame-by-frame animation, and short-form video editing.</p>
           <div class="tag-row">
             <div class="pill-group" data-pillrow></div>
             <span class="card-employment" data-employment-label></span>
@@ -1225,7 +1218,7 @@ section.tight{padding-top:0;}
       projectGrid.querySelectorAll('.card'),
       function(c){ return !c.classList.contains('is-hidden'); }
     );
-    var groupSize = 2;
+    var groupSize = window.innerWidth <= 860 ? 1 : 2;
     var pairCount = Math.ceil(visibleCards.length / groupSize);
     for (var i = 0; i < pairCount; i++) {
       var pair = visibleCards.slice(i * groupSize, i * groupSize + groupSize);
