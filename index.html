@@ -512,19 +512,20 @@ section.tight{padding-top:0;}
   section{padding:64px 0;}
   .topbar-inner{display:flex;justify-content:space-between;}
   .topnav{
-    position:fixed;top:43px;right:20px;left:auto;
+    position:fixed;top:53px;left:362px;right:auto;
     background:var(--paper);
     border:1px solid var(--line-strong);
     border-radius:var(--radius-sm);
     flex-direction:column;gap:0;
-    padding:4px 16px;
-    min-width:120px;
-    transform:translateY(-8px);
+    padding:2px 14px;
+    min-width:90px;
+    z-index:200;
+    transform:translateX(-50%) translateY(-8px);
     opacity:0;pointer-events:none;
     transition:opacity .18s var(--ease), transform .18s var(--ease);
   }
-  .topnav.open{opacity:1;pointer-events:auto;transform:translateY(0);}
-  .topnav a{display:block;padding:12px 0;border-bottom:1px solid var(--line);font-size:9px;}
+  .topnav.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
+  .topnav a{display:block;padding:6px 0;text-align:center;font-size:9px;}
   .navtoggle{display:block;}
   .navtoggle{padding:3.44px 4.3px;}
   .navtoggle span{
