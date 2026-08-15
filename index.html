@@ -510,15 +510,15 @@ section.tight{padding-top:0;}
   .mb-only{display:inline;}
   .wrap, .topbar-inner, .filterbar-inner{padding-left:20px;padding-right:20px;}
   section{padding:64px 0;}
-  .topbar-inner{display:flex;justify-content:space-between;}
+  .topbar-inner{display:flex;justify-content:space-between;height:51px;}
   .topnav{
-    position:fixed;top:53px;left:362px;right:auto;
+    position:fixed;top:52px;left:362.5px;right:auto;
     background:var(--paper);
     border:1px solid var(--line-strong);
     border-radius:var(--radius-sm);
     flex-direction:column;gap:0;
     padding:2px 14px;
-    min-width:90px;
+    min-width:85px;
     z-index:200;
     transform:translateX(-50%) translateY(-8px);
     opacity:0;pointer-events:none;
@@ -526,15 +526,14 @@ section.tight{padding-top:0;}
   }
   .topnav.open{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);}
   .topnav a{display:block;padding:6px 0;text-align:center;font-size:9px;}
-  .navtoggle{display:block;}
+  .navtoggle{display:block;transform:translateY(-8.98px);}
   .navtoggle{padding:3.44px 4.3px;}
   .navtoggle span{
     width:11.06px;height:1.22px;margin:2.46px 0;
     transition:transform .2s var(--ease), opacity .2s var(--ease);
   }
   .navtoggle[aria-expanded="true"] span:nth-child(1){transform:translateY(3.68px) rotate(45deg);}
-  .navtoggle[aria-expanded="true"] span:nth-child(2){opacity:0;}
-  .navtoggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-3.68px) rotate(-45deg);}
+  .navtoggle[aria-expanded="true"] span:nth-child(2){transform:translateY(-3.68px) rotate(-45deg);}
   .hero{padding:36px 0;}
   .hero-sub-row{flex-direction:column;gap:20px;}
   .hero-stats{flex-wrap:nowrap;gap:14px;justify-content:flex-start;}
@@ -543,7 +542,7 @@ section.tight{padding-top:0;}
   .hero-stat:nth-child(3){transform:translateX(15px);}
   .hero-stat .num{font-size:16px;}
   .hero-stat .lbl{font-size:9px;letter-spacing:.01em;white-space:nowrap;}
-  .brandmark{font-size:9px;}
+  .brandmark{font-size:9px;transform:translateY(-5px);}
   .foot{font-size:9px;}
   .project-grid{grid-template-columns:1fr;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
@@ -598,7 +597,7 @@ section.tight{padding-top:0;}
     <a href="#top" class="brandmark">Emily S.M. Portfolio</a>
     <div class="topbar-nav-wrap">
       <button class="navtoggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <span></span><span></span>
       </button>
       <nav>
         <ul class="topnav" id="topnav">
