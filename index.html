@@ -505,6 +505,77 @@ section.tight{padding-top:0;}
   .card-role{font-size:14px;}
 }
 .mb-only{display:none;}
+.project-modal-overlay{
+  position:fixed;inset:0;
+  background:rgba(23,24,28,0.62);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;
+  z-index:300;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s var(--ease);
+}
+.project-modal-overlay.open{opacity:1;pointer-events:auto;}
+.project-modal{
+  background:var(--card-bg);
+  border-radius:6px;
+  max-width:720px;width:100%;
+  max-height:85vh;overflow-y:auto;
+  padding:36px;
+  position:relative;
+  transform:translateY(12px);
+  transition:transform .2s var(--ease);
+}
+.project-modal-overlay.open .project-modal{transform:translateY(0);}
+.project-modal-close{
+  position:absolute;top:20px;right:20px;
+  width:28px;height:28px;
+  border:1px solid var(--line-strong);
+  border-radius:var(--radius-sm);
+  background:none;
+  font-family:'IBM Plex Mono', monospace;
+  font-size:16px;
+  color:var(--ink-soft);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  line-height:1;
+}
+.project-modal-close:hover{border-color:var(--ink);color:var(--ink);}
+.project-modal-meta{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-faint);margin-bottom:14px;}
+.project-modal-hero{width:100%;aspect-ratio:16/7;border-radius:3px;overflow:hidden;margin-bottom:22px;}
+.project-modal-hero svg{width:100%;height:100%;display:block;}
+.project-modal h2{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:800;
+  font-size:clamp(24px,3vw,32px);
+  color:var(--ink);
+  margin:0 0 6px;
+}
+.project-modal-role{
+  font-family:'IBM Plex Mono', monospace;
+  font-size:13px;
+  color:var(--ink-faint);
+  margin:0 0 24px;
+}
+.project-modal-body{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.project-modal-body p{font-size:16px;color:var(--ink-soft);line-height:1.6;margin:0 0 16px;}
+.project-modal-body h3{
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:800;
+  font-size:13px;
+  color:var(--red);
+  text-transform:uppercase;
+  letter-spacing:.03em;
+  margin:0 0 8px;
+}
+.project-modal-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
+.project-modal-image-ph{aspect-ratio:4/3;border-radius:2px;}
+@media (max-width:700px){
+  .project-modal{padding:24px;max-height:90vh;}
+  .project-modal-body{grid-template-columns:1fr;gap:0;}
+}
+
 @media (max-width: 860px){
   .dt-only{display:none;}
   .mb-only{display:inline;}
@@ -680,7 +751,7 @@ section.tight{padding-top:0;}
       <div class="project-grid" id="projectGrid">
 
         <!-- 1 -->
-        <article class="card" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Marketing" data-employment="Full-Time">
+        <article class="card" id="card01" data-tags="branding marketing" data-industry="hospitality" data-pill-discipline="Marketing" data-employment="Full-Time">
           <div class="card-top">
             <span class="card-index">01</span>
             <span class="card-index">May 2026 — Present</span>
@@ -966,11 +1037,69 @@ section.tight{padding-top:0;}
     </div>
   </footer>
 
+  <div class="project-modal-overlay" id="projectModalOverlay">
+    <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+      <button class="project-modal-close" id="projectModalClose" aria-label="Close">&times;</button>
+      <div class="project-modal-meta">01 · May 2026 — Present</div>
+      <div class="project-modal-hero">
+        <svg viewBox="0 0 800 350" preserveAspectRatio="none" role="img" aria-label="Abstract brand mark composition">
+          <rect width="800" height="350" fill="#EFE6D2"/>
+          <circle cx="600" cy="110" r="190" fill="#C99A2B" opacity="0.18"/>
+          <path d="M0 350 L280 140 L460 265 L800 60 L800 350 Z" fill="#24475A" opacity="0.85"/>
+          <circle cx="180" cy="95" r="42" fill="#1E3FE0"/>
+        </svg>
+      </div>
+      <h2 id="projectModalTitle">Canopy by Hilton</h2>
+      <p class="project-modal-role">Marketing &amp; Sales Administrator · Marketing &amp; Brand Design</p>
+      <div class="project-modal-body">
+        <div class="project-modal-col">
+          <p>Redesigned event flyers and in-house restaurant menus, translating new brand identity into assets that support the sales process.</p>
+          <h3>Process</h3>
+          <p>Placeholder text describing the process for this project — research, drafts, iteration, and how the direction was refined along the way.</p>
+        </div>
+        <div class="project-modal-col">
+          <div class="project-modal-image-grid">
+            <div class="project-modal-image-ph" style="background:#E4D5B7;"></div>
+            <div class="project-modal-image-ph" style="background:#24475A;"></div>
+          </div>
+          <h3>Outcome</h3>
+          <p>Placeholder text describing the outcome and impact of this project once it shipped.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <script>
 (function(){
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  var projectModalOverlay = document.getElementById('projectModalOverlay');
+  var projectModal = document.getElementById('projectModal');
+  var projectModalClose = document.getElementById('projectModalClose');
+  var card01 = document.getElementById('card01');
+
+  function openProjectModal(){
+    projectModalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProjectModal(){
+    projectModalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (card01) {
+    card01.addEventListener('click', openProjectModal);
+  }
+  projectModalClose.addEventListener('click', closeProjectModal);
+  projectModalOverlay.addEventListener('click', function(e){
+    if (e.target === projectModalOverlay) closeProjectModal();
+  });
+  projectModal.addEventListener('click', function(e){ e.stopPropagation(); });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && projectModalOverlay.classList.contains('open')) closeProjectModal();
+  });
+
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
