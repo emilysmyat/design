@@ -517,7 +517,7 @@ section.tight{padding-top:0;}
     border:1px solid var(--line-strong);
     border-radius:var(--radius-sm);
     flex-direction:column;gap:0;
-    padding:2px 9.5px 2px 7.5px;
+    padding:2px 9.5px 2px 4.5px;
     min-width:85px;
     z-index:50;
     transform:translateX(calc(-50% + 140px));
@@ -529,7 +529,7 @@ section.tight{padding-top:0;}
   #about{scroll-margin-top:-5px;}
   .navtoggle{
     display:block;
-    transform:translate(2px, -8.98px);
+    transform:translate(2px, -6.98px);
     padding:5px 6px;
     position:relative;
     width:23px;height:23px;
@@ -988,6 +988,7 @@ section.tight{padding-top:0;}
   });
 
   var roles = ['marketing', 'branding', 'social impact', 'product design', 'editorial', 'illustration'];
+  var trailWords = ['marketing', 'content', 'communications', 'copywriting', 'social impact', 'graphic design', 'editorial', 'branding', 'illustration', 'product design'];
   var roleSlot = document.getElementById('roleSlot');
   var idx = 0;
 
@@ -1036,7 +1037,7 @@ section.tight{padding-top:0;}
       var spawnEvery = 34;
 
       function spawn(x, y){
-        pts.push({ x: x, y: y, word: roles[wi % roles.length], life: 1 });
+        pts.push({ x: x, y: y, word: trailWords[wi % trailWords.length], life: 1 });
         wi++;
         ensureLoopRunning();
       }
