@@ -576,9 +576,10 @@ section.tight{padding-top:0;}
   .project-modal-body{grid-template-columns:1fr;gap:0;}
 }
 
-.mb-break-lg{display:none;}
+.mb-break-lg-line{display:inline;}
 @media (min-width:1440px){
-  .mb-break-lg{display:inline;}
+  .mb-break-lg-line{display:block;white-space:nowrap;}
+  .about-bio p:nth-of-type(2){max-width:820px;}
 }
 
 @media (max-width: 860px){
@@ -1019,7 +1020,7 @@ section.tight{padding-top:0;}
       <div class="about-grid reveal">
         <div class="about-bio">
           <p>I am an emerging multidisciplinary professional moving fluidly between commercial polish and mission-driven storytelling, and I move between disciplines on purpose. To me, design is less about mastering a single skill and more so a way of asking questions. Sometimes the answer is a system with rules and consistency. Sometimes it's a graphic that doesn't need any words at all.</p>
-          <p>I've never believed a career has to read like a straight line; most<br class="mb-break-lg"> people don't think that way. My portfolio has zigzagged between<br class="mb-break-lg"> commercial work and projects that matter to me for reasons that have<br class="mb-break-lg"> nothing to do with a resume. No matter what, I start from the same place:<br class="mb-break-lg"> who is this for, what do they need to understand, and what's the clearest<br class="mb-break-lg"> way to get them there?</p>
+          <p><span class="mb-break-lg-line">I've never believed a career has to read like a straight line;</span> <span class="mb-break-lg-line">most people don't think that way. My portfolio zigzags</span> <span class="mb-break-lg-line">between commercial work and projects that matter to me for reasons</span> <span class="mb-break-lg-line">that have nothing to do with a resume. No matter what, I start from</span> <span class="mb-break-lg-line">the same place: who is this for, what do they need to understand,</span> <span class="mb-break-lg-line">and what is the clearest way to get them there?</span></p>
         </div>
         <div id="contact" class="about-contact-col">
           <p class="eyebrow">Currently <em>open</em> to opportunities</p>
