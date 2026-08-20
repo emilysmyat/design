@@ -520,61 +520,23 @@ section.tight{padding-top:0;}
 .project-modal{
   background:var(--card-bg);
   border-radius:6px;
-  max-width:720px;width:100%;
+  max-width:1309px;width:100%;
   position:relative;
   transform:translateY(12px);
   transition:transform .2s var(--ease);
 }
 .project-modal-overlay.open .project-modal{transform:translateY(0);}
+.project-modal-clip{
+  border-radius:6px;
+  overflow:hidden;
+}
 .project-modal-scroll{
   max-height:85vh;overflow-y:auto;
-  padding:36px;
-  border-radius:6px;
-}
-.project-modal.layout-vertical{
-  max-width:820px;
-}
-.project-modal.layout-vertical .project-modal-scroll{
-  display:grid;
-  grid-template-columns:280px 1fr;
-  padding:0;
-  overflow:hidden;
-  max-height:85vh;
-}
-.project-modal.layout-vertical .project-modal-hero{
-  margin:0;
-  width:100%;height:100%;
-  aspect-ratio:auto;
-  border-radius:0;
-}
-.project-modal.layout-vertical .project-modal-content{
-  padding:32px;
-  overflow-y:auto;
-  max-height:85vh;
-}
-.project-modal.layout-vertical .project-modal-body{
-  grid-template-columns:1fr;
-  gap:0;
-}
-.project-modal.layout-vertical .project-modal-image-grid{margin-top:4px;}
-@media (max-width:700px){
-  .project-modal.layout-vertical .project-modal-scroll{
-    display:block;
-    max-height:90vh;
-    overflow-y:auto;
-  }
-  .project-modal.layout-vertical .project-modal-hero{
-    aspect-ratio:16/10;
-    width:100%;height:auto;
-  }
-  .project-modal.layout-vertical .project-modal-content{
-    padding:24px;
-    overflow-y:visible;
-    max-height:none;
-  }
+  padding:44px 52px;
+  background:var(--card-bg);
 }
 .project-modal-close{
-  position:absolute;top:20px;right:20px;
+  position:absolute;top:14px;right:20px;
   width:28px;height:28px;
   border:1px solid var(--line-strong);
   border-radius:var(--radius-sm);
@@ -587,25 +549,38 @@ section.tight{padding-top:0;}
 }
 .project-modal-close svg{display:block;}
 .project-modal-close:hover{border-color:var(--ink);color:var(--ink);}
-.project-modal-meta{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-faint);margin-bottom:14px;}
-.project-modal-hero{width:100%;aspect-ratio:16/7;border-radius:3px;overflow:hidden;margin-bottom:22px;}
-.project-modal-hero svg{width:100%;height:100%;display:block;}
+.project-modal-meta{font-family:'IBM Plex Mono', monospace;font-size:12px;color:var(--ink-faint);margin-bottom:10px;}
 .project-modal h2{
   font-family:'Archivo Expanded', sans-serif;
   font-weight:800;
-  font-size:clamp(24px,3vw,32px);
+  font-size:clamp(26px,3vw,38px);
   color:var(--ink);
   margin:0 0 6px;
 }
 .project-modal-role{
   font-family:'IBM Plex Mono', monospace;
-  font-size:13px;
+  font-size:14px;
   color:var(--ink-faint);
-  margin:0 0 24px;
+  margin:0;
 }
-.project-modal-body{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
-.project-modal-body p{font-size:16px;color:var(--ink-soft);line-height:1.6;margin:0 0 16px;}
-.project-modal-body h3{
+.project-modal-divider{
+  border-top:1px solid var(--line);
+  margin:24px 0 32px;
+}
+.project-modal-body{
+  display:grid;
+  grid-template-columns:min(490px, 40%) 1fr;
+  gap:52px;
+}
+.project-modal-hero{
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:4px;
+  overflow:hidden;
+}
+.project-modal-hero svg{width:100%;height:100%;display:block;}
+.project-modal-narrative p{font-size:19px;color:var(--ink-soft);line-height:1.65;margin:0 0 28px;}
+.project-modal-narrative h3{
   font-family:'Archivo Expanded', sans-serif;
   font-weight:800;
   font-size:13px;
@@ -614,11 +589,13 @@ section.tight{padding-top:0;}
   letter-spacing:.03em;
   margin:0 0 8px;
 }
-.project-modal-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px;}
-.project-modal-image-ph{aspect-ratio:4/3;border-radius:2px;}
-@media (max-width:700px){
+.project-modal-narrative h3 + p{font-size:15px;margin:0 0 28px;}
+.project-modal-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.project-modal-image-ph{aspect-ratio:3/2;border-radius:3px;}
+@media (max-width:860px){
   .project-modal-scroll{padding:24px;max-height:90vh;}
   .project-modal-body{grid-template-columns:1fr;gap:0;}
+  .project-modal-hero{margin-bottom:24px;}
   .project-modal-close{top:-14px;right:-14px;}
 }
 
@@ -1092,28 +1069,29 @@ section.tight{padding-top:0;}
   <div class="project-modal-overlay" id="projectModalOverlay">
     <div class="project-modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
       <button class="project-modal-close" id="projectModalClose" aria-label="Close"><svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true"><line x1="8.77" y1="8.77" x2="19.23" y2="19.23" stroke="currentColor" stroke-width="1.2"/><line x1="19.23" y1="8.77" x2="8.77" y2="19.23" stroke="currentColor" stroke-width="1.2"/></svg></button>
+      <div class="project-modal-clip">
       <div class="project-modal-scroll" id="projectModalScroll">
-        <div class="project-modal-hero" id="projectModalHero"></div>
         <div class="project-modal-content" id="projectModalContent">
           <div class="project-modal-meta" id="projectModalMeta"></div>
           <h2 id="projectModalTitle"></h2>
           <p class="project-modal-role" id="projectModalRole"></p>
+          <div class="project-modal-divider"></div>
           <div class="project-modal-body">
-            <div class="project-modal-col">
+            <div class="project-modal-hero" id="projectModalHero"></div>
+            <div class="project-modal-narrative">
               <p id="projectModalDesc"></p>
               <h3>Process</h3>
               <p id="projectModalProcess"></p>
-            </div>
-            <div class="project-modal-col">
+              <h3>Outcome</h3>
+              <p id="projectModalOutcome"></p>
               <div class="project-modal-image-grid">
                 <div class="project-modal-image-ph" id="projectModalSwatch1"></div>
                 <div class="project-modal-image-ph" id="projectModalSwatch2"></div>
               </div>
-              <h3>Outcome</h3>
-              <p id="projectModalOutcome"></p>
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   </div>
@@ -1134,7 +1112,7 @@ section.tight{padding-top:0;}
       title: 'Canopy by Hilton',
       role: 'Marketing &amp; Sales Administrator · Marketing &amp; Brand Design',
       desc: "Redesigned event flyers and in-house restaurant menus, translating new brand identity into assets that support the sales process.",
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract brand mark composition"><rect width="400" height="225" fill="#EFE6D2"/><circle cx="300" cy="70" r="120" fill="#C99A2B" opacity="0.18"/><path d="M0 225 L140 90 L230 170 L400 40 L400 225 Z" fill="#24475A" opacity="0.85"/><circle cx="90" cy="60" r="26" fill="#1E3FE0"/><line x1="0" y1="140" x2="400" y2="140" stroke="#17181C" stroke-width="1" opacity="0.2"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square brand mark composition"><rect width="490" height="490" fill="#EFE6D2"/><circle cx="370" cy="150" r="150" fill="#C99A2B" opacity="0.18"/><path d="M0 490 L170 280 L280 380 L490 190 L490 490 Z" fill="#24475A" opacity="0.85"/><circle cx="110" cy="130" r="34" fill="#1E3FE0"/><line x1="0" y1="310" x2="490" y2="310" stroke="#17181C" stroke-width="1" opacity="0.2"/></svg>',
       swatch1: '#E4D5B7', swatch2: '#24475A'
     },
     {
@@ -1142,7 +1120,7 @@ section.tight{padding-top:0;}
       title: 'Advanced Fresh Concepts',
       role: 'Digital Media Intern · Email &amp; Editorial Design',
       desc: 'Designed e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing readability with brand visuals.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract newsletter layout composition"><rect width="400" height="225" fill="#EFE6D2"/><rect x="30" y="30" width="150" height="10" fill="#17181C" opacity="0.7"/><rect x="30" y="52" width="220" height="6" fill="#84837D"/><rect x="30" y="66" width="180" height="6" fill="#84837D"/><rect x="230" y="30" width="140" height="90" fill="#24475A" opacity="0.75"/><rect x="30" y="130" width="90" height="65" fill="#1E3FE0" opacity="0.85"/><rect x="130" y="130" width="90" height="65" fill="#C99A2B" opacity="0.55"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square newsletter layout composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="35" y="35" width="200" height="14" fill="#17181C" opacity="0.7"/><rect x="35" y="64" width="280" height="8" fill="#84837D"/><rect x="35" y="82" width="230" height="8" fill="#84837D"/><rect x="35" y="115" width="420" height="195" fill="#24475A" opacity="0.75"/><rect x="35" y="330" width="200" height="125" fill="#1E3FE0" opacity="0.85"/><rect x="255" y="330" width="200" height="125" fill="#C99A2B" opacity="0.55"/></svg>',
       swatch1: '#24475A', swatch2: '#1E3FE0'
     },
     {
@@ -1150,7 +1128,7 @@ section.tight{padding-top:0;}
       title: 'CUNY — Interactive Web Design',
       role: "Independent Study · The World's Longest Ongoing Civil War",
       desc: 'An independently researched thesis presented as an interactive website, combining information interface with critical analysis.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract interactive website composition"><rect width="400" height="225" fill="#EFE6D2"/><rect x="0" y="0" width="400" height="30" fill="#17181C" opacity="0.85"/><rect x="20" y="55" width="120" height="150" fill="#1E3FE0" opacity="0.9"/><rect x="150" y="55" width="230" height="70" fill="#24475A" opacity="0.7"/><rect x="150" y="135" width="110" height="70" fill="#84837D" opacity="0.4"/><rect x="270" y="135" width="110" height="70" fill="#C99A2B" opacity="0.4"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square interactive website composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="0" y="0" width="490" height="38" fill="#17181C" opacity="0.85"/><rect x="25" y="68" width="145" height="397" fill="#1E3FE0" opacity="0.9"/><rect x="185" y="68" width="280" height="170" fill="#24475A" opacity="0.7"/><rect x="185" y="255" width="135" height="210" fill="#84837D" opacity="0.4"/><rect x="335" y="255" width="130" height="210" fill="#C99A2B" opacity="0.4"/></svg>',
       swatch1: '#1E3FE0', swatch2: '#84837D'
     },
     {
@@ -1158,8 +1136,7 @@ section.tight{padding-top:0;}
       title: 'Ubiq — Spatial Media App',
       role: 'Design &amp; Product Lab Intern · UX/UI and Product Design',
       desc: 'Wireframed, researched, and prototyped new product features within the product lab for Ubiq, an immersive 3D social platform.',
-      layout: 'vertical',
-      heroSvg: '<svg viewBox="0 0 280 500" preserveAspectRatio="none" role="img" aria-label="Abstract portrait product interface composition"><rect width="280" height="500" fill="#EFE6D2"/><rect x="35" y="60" width="210" height="380" rx="16" fill="#17181C" opacity="0.9"/><rect x="55" y="95" width="170" height="130" rx="6" fill="#24475A"/><circle cx="140" cy="300" r="34" fill="#1E3FE0"/><rect x="55" y="350" width="170" height="10" fill="#84837D"/><rect x="55" y="375" width="120" height="10" fill="#84837D" opacity="0.6"/><circle cx="220" cy="130" r="55" fill="#C99A2B" opacity="0.25"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square product interface composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="145" y="55" width="200" height="380" rx="16" fill="#17181C" opacity="0.9"/><rect x="170" y="95" width="150" height="120" rx="6" fill="#24475A"/><circle cx="245" cy="280" r="32" fill="#1E3FE0"/><rect x="170" y="330" width="150" height="9" fill="#84837D"/><rect x="170" y="352" width="105" height="9" fill="#84837D" opacity="0.6"/><circle cx="400" cy="120" r="60" fill="#C99A2B" opacity="0.25"/></svg>',
       swatch1: '#24475A', swatch2: '#C99A2B'
     },
     {
@@ -1167,7 +1144,7 @@ section.tight{padding-top:0;}
       title: 'CUNY — Political Posters',
       role: 'Student Designer · Asian American Voices Journal, Volume 7',
       desc: 'Political posters using bold graphic language to give visual form to political commentary, published in May 2025 by CUNY.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract protest poster composition"><rect width="400" height="225" fill="#17181C"/><circle cx="130" cy="112" r="85" fill="#1E3FE0"/><rect x="200" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.9"/><rect x="240" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.6"/><rect x="280" y="40" width="16" height="150" fill="#F1EFE8" opacity="0.3"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square protest poster composition"><rect width="490" height="490" fill="#17181C"/><circle cx="160" cy="245" r="105" fill="#1E3FE0"/><rect x="245" y="90" width="20" height="310" fill="#F1EFE8" opacity="0.9"/><rect x="295" y="90" width="20" height="310" fill="#F1EFE8" opacity="0.6"/><rect x="345" y="90" width="20" height="310" fill="#F1EFE8" opacity="0.3"/></svg>',
       swatch1: '#1E3FE0', swatch2: '#17181C'
     },
     {
@@ -1175,7 +1152,7 @@ section.tight{padding-top:0;}
       title: 'Art Fellow — Digital Posters',
       role: 'Art Fellow · NYC Fellows Collective, Cohort 4',
       desc: 'Eccentric digital posters centered around processing difficult human emotions, Fellows for Two: Cohort 4 — Where We Came From.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract digital poster composition"><rect width="400" height="225" fill="#EFE6D2"/><polygon points="200,20 380,205 20,205" fill="#24475A" opacity="0.85"/><circle cx="200" cy="140" r="40" fill="#1E3FE0"/><rect x="0" y="0" width="400" height="20" fill="#C99A2B" opacity="0.6"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square digital poster composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="0" y="0" width="490" height="25" fill="#C99A2B" opacity="0.6"/><polygon points="245,50 465,455 25,455" fill="#24475A" opacity="0.85"/><circle cx="245" cy="290" r="50" fill="#1E3FE0"/></svg>',
       swatch1: '#24475A', swatch2: '#C99A2B'
     },
     {
@@ -1183,7 +1160,7 @@ section.tight{padding-top:0;}
       title: 'Insane Ink — Contract Artist',
       role: 'Contract Artist · Graphic Design &amp; Illustration',
       desc: 'Freelance graphic design and illustration including apparel graphics, branded merch, posters, and flyers, through a NYC based studio.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract illustration composition"><rect width="400" height="225" fill="#17181C"/><path d="M40 190 C 80 60, 160 60, 200 130 S 320 60, 360 40" fill="none" stroke="#1E3FE0" stroke-width="6"/><circle cx="200" cy="130" r="10" fill="#F1EFE8"/><circle cx="360" cy="40" r="6" fill="#C99A2B"/><circle cx="40" cy="190" r="6" fill="#C99A2B"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square illustration composition"><rect width="490" height="490" fill="#17181C"/><path d="M50 400 C 110 150, 260 150, 320 280 S 480 150, 440 90" fill="none" stroke="#1E3FE0" stroke-width="7"/><circle cx="320" cy="280" r="13" fill="#F1EFE8"/><circle cx="440" cy="90" r="8" fill="#C99A2B"/><circle cx="50" cy="400" r="8" fill="#C99A2B"/></svg>',
       swatch1: '#1E3FE0', swatch2: '#C99A2B'
     },
     {
@@ -1191,8 +1168,7 @@ section.tight{padding-top:0;}
       title: 'Email, SMS, Social Media',
       role: 'Digital Creative Assistant · Digital Marketing',
       desc: 'Designed visual assets including email templates, SMS campaigns, and social media content, for a NYC beauty and wellness brand.',
-      layout: 'vertical',
-      heroSvg: '<svg viewBox="0 0 280 500" preserveAspectRatio="none" role="img" aria-label="Abstract portrait social media story composition"><rect width="280" height="500" fill="#EFE6D2"/><rect x="0" y="0" width="280" height="160" fill="#1E3FE0" opacity="0.8"/><rect x="0" y="170" width="280" height="150" fill="#C99A2B" opacity="0.55"/><rect x="0" y="330" width="280" height="170" fill="#24475A" opacity="0.7"/><circle cx="140" cy="80" r="34" fill="#F1EFE8" opacity="0.85"/><rect x="30" y="230" width="220" height="10" fill="#17181C" opacity="0.4"/><rect x="30" y="255" width="150" height="10" fill="#17181C" opacity="0.25"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square social media story composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="0" y="0" width="490" height="180" fill="#1E3FE0" opacity="0.8"/><rect x="0" y="190" width="490" height="150" fill="#C99A2B" opacity="0.55"/><rect x="0" y="350" width="490" height="140" fill="#24475A" opacity="0.7"/><circle cx="245" cy="90" r="38" fill="#F1EFE8" opacity="0.85"/><rect x="55" y="255" width="380" height="11" fill="#17181C" opacity="0.4"/><rect x="55" y="282" width="260" height="11" fill="#17181C" opacity="0.25"/></svg>',
       swatch1: '#1E3FE0', swatch2: '#C99A2B'
     },
     {
@@ -1200,7 +1176,7 @@ section.tight{padding-top:0;}
       title: 'Tech Pack &amp; Prototype',
       role: 'Product Lab Intern · Product Design',
       desc: 'Purse design mockups and a full tech pack for an emerging fashion brand focused on environmental consciousness and sustainability.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract product prototype composition"><rect width="400" height="225" fill="#EFE6D2"/><rect x="50" y="40" width="140" height="145" rx="6" fill="none" stroke="#17181C" stroke-width="2"/><line x1="50" y1="80" x2="190" y2="80" stroke="#17181C" stroke-width="1.5" opacity="0.5"/><line x1="50" y1="120" x2="190" y2="120" stroke="#17181C" stroke-width="1.5" opacity="0.5"/><circle cx="290" cy="110" r="55" fill="#1E3FE0" opacity="0.75"/><rect x="250" y="150" width="80" height="10" fill="#C99A2B" opacity="0.6"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square product prototype composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="60" y="60" width="210" height="280" rx="8" fill="none" stroke="#17181C" stroke-width="2"/><line x1="60" y1="110" x2="270" y2="110" stroke="#17181C" stroke-width="1.5" opacity="0.5"/><line x1="60" y1="170" x2="270" y2="170" stroke="#17181C" stroke-width="1.5" opacity="0.5"/><circle cx="370" cy="280" r="75" fill="#1E3FE0" opacity="0.75"/><rect x="320" y="380" width="100" height="12" fill="#C99A2B" opacity="0.6"/></svg>',
       swatch1: '#1E3FE0', swatch2: '#C99A2B'
     },
     {
@@ -1208,7 +1184,7 @@ section.tight{padding-top:0;}
       title: 'Animation, Motion, Video',
       role: 'Student · College Coursework',
       desc: 'A body of top-graded Queens College coursework spanning motion graphics, frame-by-frame animation, and short-form video editing.',
-      heroSvg: '<svg viewBox="0 0 400 225" preserveAspectRatio="none" role="img" aria-label="Abstract illustration and motion frame composition"><rect width="400" height="225" fill="#EFE6D2"/><rect x="30" y="30" width="90" height="60" fill="#1E3FE0" opacity="0.8"/><rect x="135" y="30" width="90" height="60" fill="#24475A" opacity="0.6"/><rect x="240" y="30" width="90" height="60" fill="#C99A2B" opacity="0.6"/><rect x="30" y="105" width="90" height="60" fill="#24475A" opacity="0.4"/><rect x="135" y="105" width="90" height="60" fill="#1E3FE0" opacity="0.5"/><rect x="240" y="105" width="90" height="60" fill="#17181C" opacity="0.3"/></svg>',
+      heroSvg: '<svg viewBox="0 0 490 490" preserveAspectRatio="none" role="img" aria-label="Abstract square illustration and motion frame composition"><rect width="490" height="490" fill="#EFE6D2"/><rect x="35" y="35" width="138" height="138" fill="#1E3FE0" opacity="0.8"/><rect x="193" y="35" width="138" height="138" fill="#24475A" opacity="0.6"/><rect x="351" y="35" width="104" height="138" fill="#C99A2B" opacity="0.6"/><rect x="35" y="193" width="138" height="138" fill="#24475A" opacity="0.4"/><rect x="193" y="193" width="138" height="138" fill="#1E3FE0" opacity="0.5"/><rect x="351" y="193" width="104" height="138" fill="#17181C" opacity="0.3"/></svg>',
       swatch1: '#24475A', swatch2: '#C99A2B'
     }
   ];
@@ -1228,7 +1204,6 @@ section.tight{padding-top:0;}
     document.getElementById('projectModalOutcome').textContent = placeholderOutcome;
     document.getElementById('projectModalSwatch1').style.background = d.swatch1;
     document.getElementById('projectModalSwatch2').style.background = d.swatch2;
-    projectModal.classList.toggle('layout-vertical', d.layout === 'vertical');
     var modalScroll = document.getElementById('projectModalScroll');
     if (modalScroll) modalScroll.scrollTop = 0;
     var modalContent = document.getElementById('projectModalContent');
