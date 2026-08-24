@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="images/favicon-512.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Multidisciplinary Design</title>
+<title>Design & Creative Communications</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Expanded:wght@500;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -715,10 +715,78 @@ section.tight{padding-top:0;}
   #industryChips .chip[data-filter="nonprofit"]{order:5;}
   #industryChips .chip[data-filter="other"]{order:6;}
 }
+
+#intro{
+  position:fixed;inset:0;
+  background:var(--paper);
+  display:flex;align-items:center;justify-content:flex-start;
+  z-index:2000;
+  overflow:hidden;
+}
+#introGroup{
+  display:flex;align-items:center;
+  position:relative;
+}
+#introText{
+  display:flex;align-items:center;
+  font-family:'Archivo Expanded', sans-serif;
+  font-weight:800;
+  font-size:56px;
+  color:var(--ink);
+  white-space:nowrap;
+}
+#introText .ch{
+  display:inline-flex;
+  align-items:center;
+  transition:max-width .4s cubic-bezier(.4,0,.2,1), opacity .32s ease;
+  max-width:60px;
+}
+#introText .ch.hidden{
+  max-width:0;
+  opacity:0;
+}
+#introText .dot{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  transition:transform .25s ease, max-width .3s ease, opacity .25s ease;
+  overflow:hidden;
+}
+#introText .dot .dotInner{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:var(--red);
+  flex-shrink:0;
+}
+#portfolioSpan .ch{
+  color:var(--ink);
+}
+#intro.dissolve{opacity:0;transition:opacity .5s ease;}
+#mainSite{
+  opacity:0;
+  transition:opacity .7s ease;
+}
+#mainSite.visible{opacity:1;}
+@media (max-width:860px){
+  #introText{font-size:32px;}
+  #introText .dot .dotInner{width:14px;height:14px;}
+}
 </style>
 </head>
 <body>
 
+<div id="intro">
+  <div id="introGroup">
+    <div id="introText">
+      <span id="lettersWrap"></span>
+      <span class="dot" id="dotGlyph" style="max-width:0;opacity:0;margin:0;"><span class="dotInner"></span></span>
+      <span id="portfolioSpan"></span>
+    </div>
+  </div>
+</div>
+
+<div id="mainSite">
 <header class="topbar">
   <div class="topbar-inner">
     <a href="#top" class="brandmark">Emily S.M. Portfolio</a>
@@ -1039,6 +1107,7 @@ section.tight{padding-top:0;}
   </div>
 
 </main>
+</div>
 
 <script>
 (function(){
@@ -1573,6 +1642,138 @@ section.tight{padding-top:0;}
   } else {
     document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
   }
+})();
+</script>
+
+<script>
+(function(){
+  var typedString = "EMILYSUUMYATNOE";
+  var fillerIndices = [6,7,9,10,11,12,13,14];
+  var portfolioString = "PORTFOLIO";
+
+  var lettersWrap = document.getElementById('lettersWrap');
+  var dotGlyph = document.getElementById('dotGlyph');
+  var portfolioSpan = document.getElementById('portfolioSpan');
+  var introGroup = document.getElementById('introGroup');
+  var introText = document.getElementById('introText');
+  var intro = document.getElementById('intro');
+  var mainSite = document.getElementById('mainSite');
+
+  var charSpans = [];
+
+  function makeLetterSpan(letter){
+    var outer = document.createElement('span');
+    outer.className = 'ch hidden';
+    var inner = document.createElement('span');
+    inner.textContent = letter;
+    outer.appendChild(inner);
+    return outer;
+  }
+
+  function measureFinalWidthAndPosition(){
+    var measurer = introText.cloneNode(false);
+    measurer.style.position = 'absolute';
+    measurer.style.visibility = 'hidden';
+    measurer.style.pointerEvents = 'none';
+
+    var lettersClone = document.createElement('span');
+    typedString.split('').forEach(function(letter){
+      lettersClone.appendChild(makeLetterSpan(letter));
+    });
+    measurer.appendChild(lettersClone);
+    Array.prototype.forEach.call(lettersClone.children, function(span){
+      span.classList.remove('hidden');
+      span.style.maxWidth = 'none';
+    });
+
+    var dotClone = document.createElement('span');
+    dotClone.className = 'dot';
+    dotClone.style.margin = '0 16px';
+    dotClone.style.maxWidth = '22px';
+    var dotInner = document.createElement('span');
+    dotInner.className = 'dotInner';
+    dotClone.appendChild(dotInner);
+    measurer.appendChild(dotClone);
+
+    var portfolioClone = document.createElement('span');
+    portfolioString.split('').forEach(function(letter){
+      var span = makeLetterSpan(letter);
+      span.classList.remove('hidden');
+      span.style.maxWidth = 'none';
+      portfolioClone.appendChild(span);
+    });
+    measurer.appendChild(portfolioClone);
+
+    document.body.appendChild(measurer);
+    var fullWidth = measurer.getBoundingClientRect().width;
+    document.body.removeChild(measurer);
+
+    var startLeft = (window.innerWidth - fullWidth) / 2;
+    introGroup.style.position = 'absolute';
+    introGroup.style.left = startLeft + 'px';
+    introGroup.style.top = '50%';
+    introGroup.style.transform = 'translateY(-50%)';
+  }
+
+  function revealNext(i){
+    if (i < typedString.length){
+      var span = makeLetterSpan(typedString[i]);
+      lettersWrap.appendChild(span);
+      charSpans.push(span);
+      requestAnimationFrame(function(){
+        var w = span.firstChild.getBoundingClientRect().width;
+        span.style.maxWidth = w + 'px';
+        span.classList.remove('hidden');
+      });
+      setTimeout(function(){ revealNext(i+1); }, 65);
+      return;
+    }
+    setTimeout(revealDot, 120);
+  }
+
+  function revealDot(){
+    dotGlyph.style.margin = '0 16px';
+    dotGlyph.style.maxWidth = '22px';
+    dotGlyph.style.opacity = '1';
+    setTimeout(function(){ typePortfolio(0); }, 220);
+  }
+
+  function typePortfolio(i){
+    if (i < portfolioString.length){
+      var span = makeLetterSpan(portfolioString[i]);
+      portfolioSpan.appendChild(span);
+      requestAnimationFrame(function(){
+        var w = span.firstChild.getBoundingClientRect().width;
+        span.style.maxWidth = w + 'px';
+        span.classList.remove('hidden');
+      });
+      setTimeout(function(){ typePortfolio(i+1); }, 55);
+      return;
+    }
+    setTimeout(collapseFillers, 650);
+  }
+
+  function collapseFillers(){
+    introGroup.style.left = '50%';
+    introGroup.style.transform = 'translate(-50%, -50%)';
+    fillerIndices.forEach(function(idx){
+      var span = charSpans[idx];
+      span.style.opacity = '0';
+      span.style.maxWidth = '0px';
+    });
+    setTimeout(dissolveIntro, 650);
+  }
+
+  function dissolveIntro(){
+    intro.classList.add('dissolve');
+    mainSite.classList.add('visible');
+    setTimeout(function(){
+      intro.style.display = 'none';
+    }, 550);
+  }
+
+  measureFinalWidthAndPosition();
+  revealNext(0);
 })();
 </script>
 
