@@ -603,7 +603,8 @@ section.tight{padding-top:0;}
 }
 .project-modal-narrative h3 + p{font-size:15px;margin:0 0 28px;}
 .project-modal-image-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-.project-modal-image-ph{aspect-ratio:3/2;border-radius:3px;}
+.project-modal-image-ph{aspect-ratio:3/2;border-radius:3px;overflow:hidden;position:relative;}
+.project-modal-image-ph img, .project-modal-image-ph video{width:100%;height:100%;object-fit:cover;display:block;}
 @media (max-width:860px){
   .project-modal-scroll{padding:24px;max-height:90vh;}
   .project-modal-body{grid-template-columns:1fr;gap:0;}
@@ -1132,7 +1133,9 @@ section.tight{padding-top:0;}
       role: 'Digital Media Intern · Email &amp; Editorial Design',
       desc: 'Designed e-newsletter templates and press kit materials for Advanced Fresh Concepts, balancing readability with brand visuals.',
       heroSvg: '<img src="images/AFCmodal1.png" alt="AFC Sushi Global Press Kit spread" style="width:100%;height:100%;object-fit:cover;display:block;">',
-      swatch1: '#24475A', swatch2: '#1E3FE0'
+      swatch1: '#24475A', swatch2: '#1E3FE0',
+      swatch1Media: '<video id="afcSwatch1Video" muted loop playsinline><source src="images/afc-swatch1.webm" type="video/webm"><source src="images/afc-swatch1.mp4" type="video/mp4"></video>',
+      swatch2Media: '<img src="images/AFCmodal3.png" alt="AFC brand overview">'
     },
     {
       meta: '03 · Dec 2025',
@@ -1140,7 +1143,9 @@ section.tight{padding-top:0;}
       role: "Independent Study · The World's Longest Ongoing Civil War",
       desc: 'An independently researched thesis presented as an interactive website, combining information interface with critical analysis.',
       heroSvg: '<div style="position:relative;width:100%;height:100%;overflow:hidden;"><img src="images/portmacbook.png" alt="iMac mockup displaying interactive thesis website" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"><video id="card03ModalVideo" muted loop playsinline style="position:absolute;left:11.35%;top:13.04%;width:77.31%;height:47.20%;object-fit:cover;"><source src="images/card03-modal-video.webm" type="video/webm"><source src="images/card03-modal-video.mp4" type="video/mp4"></video></div>',
-      swatch1: '#1E3FE0', swatch2: '#84837D'
+      swatch1: '#1E3FE0', swatch2: '#84837D',
+      swatch1Media: '<video id="cunySwatch1Video" muted loop playsinline><source src="images/cuny-swatch1.webm" type="video/webm"><source src="images/cuny-swatch1.mp4" type="video/mp4"></video>',
+      swatch2Media: '<video id="cunySwatch2Video" muted loop playsinline><source src="images/cuny-swatch2.webm" type="video/webm"><source src="images/cuny-swatch2.mp4" type="video/mp4"></video>'
     },
     {
       meta: '04 · June — Sept 2025',
@@ -1148,7 +1153,9 @@ section.tight{padding-top:0;}
       role: 'Design &amp; Product Lab Intern · UX/UI and Product Design',
       desc: 'Wireframed, researched, and prototyped new product features within the product lab for Ubiq, an immersive 3D social platform.',
       heroSvg: '<video id="ubiqModalVideo" muted loop playsinline style="width:100%;height:100%;object-fit:cover;display:block;"><source src="images/ubiq-modal-video.webm" type="video/webm"><source src="images/ubiq-modal-video.mp4" type="video/mp4"></video>',
-      swatch1: '#24475A', swatch2: '#C99A2B'
+      swatch1: '#24475A', swatch2: '#C99A2B',
+      swatch1Media: '<video id="ubiqSwatch1Video" muted loop playsinline><source src="images/ubiq-swatch1.webm" type="video/webm"><source src="images/ubiq-swatch1.mp4" type="video/mp4"></video>',
+      swatch2Media: '<video id="ubiqSwatch2Video" muted loop playsinline><source src="images/ubiq-swatch2.webm" type="video/webm"><source src="images/ubiq-swatch2.mp4" type="video/mp4"></video>'
     },
     {
       meta: '05 · May 2025',
@@ -1195,7 +1202,7 @@ section.tight{padding-top:0;}
       title: 'Animation, Motion, Video',
       role: 'Student · College Coursework',
       desc: 'A body of top-graded Queens College coursework spanning motion graphics, frame-by-frame animation, and short-form video editing.',
-      heroSvg: '<div style="position:relative;width:100%;height:100%;overflow:hidden;"><img src="images/portmacbook.png" alt="iMac mockup displaying election coverage video" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"><video id="zohranModalVideo" muted playsinline style="position:absolute;left:11.35%;top:13.04%;width:77.31%;height:47.20%;object-fit:cover;"><source src="images/zohran-modal-video.webm" type="video/webm"><source src="images/zohran-modal-video.mp4" type="video/mp4"></video><button id="zohranReplayBtn" aria-label="Replay video" style="position:absolute;left:11.35%;top:13.04%;width:77.31%;height:47.20%;display:none;align-items:center;justify-content:center;background:rgba(23,24,28,0.45);border:none;cursor:pointer;padding:0;"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#FBFAF6"/><polygon points="18,14 32,22 18,30" fill="#17181C"/></svg></button></div>',
+      heroSvg: '<div style="position:relative;width:100%;height:100%;overflow:hidden;"><img src="images/portmacbook.png" alt="iMac mockup displaying election coverage video" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;"><video id="zohranModalVideo" controls playsinline style="position:absolute;left:11.35%;top:13.04%;width:77.31%;height:47.20%;object-fit:cover;"><source src="images/zohran-modal-video.webm" type="video/webm"><source src="images/zohran-modal-video.mp4" type="video/mp4"></video><button id="zohranReplayBtn" aria-label="Replay video" style="position:absolute;left:11.35%;top:13.04%;width:77.31%;height:47.20%;display:none;align-items:center;justify-content:center;background:rgba(23,24,28,0.45);border:none;cursor:pointer;padding:0;"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="22" fill="#FBFAF6"/><polygon points="18,14 32,22 18,30" fill="#17181C"/></svg></button></div>',
       swatch1: '#24475A', swatch2: '#C99A2B'
     }
   ];
@@ -1214,8 +1221,22 @@ section.tight{padding-top:0;}
     document.getElementById('projectModalDesc').textContent = d.desc;
     document.getElementById('projectModalProcess').textContent = placeholderProcess;
     document.getElementById('projectModalOutcome').textContent = placeholderOutcome;
-    document.getElementById('projectModalSwatch1').style.background = d.swatch1;
-    document.getElementById('projectModalSwatch2').style.background = d.swatch2;
+    var swatch1El = document.getElementById('projectModalSwatch1');
+    var swatch2El = document.getElementById('projectModalSwatch2');
+    if (d.swatch1Media){
+      swatch1El.style.background = '';
+      swatch1El.innerHTML = d.swatch1Media;
+    } else {
+      swatch1El.innerHTML = '';
+      swatch1El.style.background = d.swatch1;
+    }
+    if (d.swatch2Media){
+      swatch2El.style.background = '';
+      swatch2El.innerHTML = d.swatch2Media;
+    } else {
+      swatch2El.innerHTML = '';
+      swatch2El.style.background = d.swatch2;
+    }
     var modalScroll = document.getElementById('projectModalScroll');
     if (modalScroll) modalScroll.scrollTop = 0;
     var modalContent = document.getElementById('projectModalContent');
@@ -1224,7 +1245,7 @@ section.tight{padding-top:0;}
     document.body.style.overflow = 'hidden';
 
     // Simple autoplay + loop videos
-    ['card03ModalVideo', 'ubiqModalVideo', 'beautystrikeModalVideo'].forEach(function(id){
+    ['card03ModalVideo', 'ubiqModalVideo', 'beautystrikeModalVideo', 'afcSwatch1Video', 'cunySwatch1Video', 'cunySwatch2Video', 'ubiqSwatch1Video', 'ubiqSwatch2Video'].forEach(function(id){
       var v = document.getElementById(id);
       if (v){ v.play().catch(function(){}); }
     });
@@ -1234,8 +1255,13 @@ section.tight{padding-top:0;}
     if (zohranVideo){
       var replayBtn = document.getElementById('zohranReplayBtn');
       pendingZohranTimeout = setTimeout(function(){
-        zohranVideo.play().catch(function(){});
-      }, 3000);
+        zohranVideo.play().catch(function(){
+          // Some browsers block unmuted autoplay; fall back to muted so it still plays,
+          // viewer can unmute manually via the visible controls.
+          zohranVideo.muted = true;
+          zohranVideo.play().catch(function(){});
+        });
+      }, 1000);
       zohranVideo.addEventListener('ended', function(){
         replayBtn.style.display = 'flex';
       });
@@ -1249,7 +1275,7 @@ section.tight{padding-top:0;}
   function closeProjectModal(){
     projectModalOverlay.classList.remove('open');
     document.body.style.overflow = '';
-    ['card03ModalVideo', 'ubiqModalVideo', 'beautystrikeModalVideo', 'zohranModalVideo'].forEach(function(id){
+    ['card03ModalVideo', 'ubiqModalVideo', 'beautystrikeModalVideo', 'zohranModalVideo', 'afcSwatch1Video', 'cunySwatch1Video', 'cunySwatch2Video', 'ubiqSwatch1Video', 'ubiqSwatch2Video'].forEach(function(id){
       var v = document.getElementById(id);
       if (v){ v.pause(); }
     });
